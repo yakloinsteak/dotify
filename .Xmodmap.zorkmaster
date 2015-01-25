@@ -1,0 +1,5 @@
+clear Lock
+add Control = Caps_Lock
+
+remove mod1 = Alt_L
+add mod4 = Alt_L
