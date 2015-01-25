@@ -1,0 +1,83 @@
+snippet o
+OUTPUT
+endsnippet
+
+snippet i
+INPUT
+endsnippet
+
+snippet pmi
+pinMode(${1:pin_number}, INPUT);
+endsnippet
+
+snippet pmo
+pinMode(${1:pin_number}, OUTPUT);
+endsnippet
+
+snippet h
+HIGH
+endsnippet
+
+snippet l
+LOW
+endsnippet
+
+snippet ar
+analogRead(${1:pinNumber});
+endsnippet
+
+snippet aw
+analogWrite(${1:pinNumber}, ${2:value});
+endsnippet
+
+snippet dw-
+digitalWrite(${1:pin}, LOW);
+endsnippet
+
+snippet dwl
+digitalWrite(${1:pin}, LOW);
+endsnippet
+
+snippet dw+
+digitalWrite(${1:pin}, HIGH);
+endsnippet
+
+snippet dr
+digitalRead(${1:pin});
+endsnippet
+
+snippet dwh
+digitalWrite(${1:pin}, HIGH);
+endsnippet
+
+snippet sp
+Serial.print(${1:string});
+endsnippet
+
+snippet if
+if (${1:logic}) {
+  ${2}
+}
+endsnippet
+
+snippet el
+else {
+  ${1:body}
+}
+endsnippet
+
+snippet ef
+else if (${1:conditional}) {
+  ${2:body}
+}
+endsnippet
+
+snippet de
+delay(${1:});
+endsnippet
+
+snippet while
+while (${1:conditional}) {
+  ${2:body}
+}
+endsnippet

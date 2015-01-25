@@ -1,0 +1,14 @@
+snippet csv "open and process"
+require 'csv'
+CSV.foreach('${1:filename}', headers: true, header_converters: :symbol) do |r|
+  row_as_hash = r.to_hash
+  ${2}
+end
+endsnippet
+
+snippet csv "generate to string"
+csv_string = CSV.generate do |csv|
+  csv << [${1:header}]
+  csv << [${2:data}]
+end
+endsnippet

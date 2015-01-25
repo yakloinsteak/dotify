@@ -1,0 +1,111 @@
+snippet num "to currency"
+number_to_currency(${1:number})
+endsnippet
+
+snippet num+ "to currency"
+number_to_currency(${1:number},
+  :locale - Sets the locale to be used for formatting (defaults to current locale).
+  :precision - Sets the level of precision (defaults to 2).
+  :unit - Sets the denomination of the currency (defaults to "$").
+  :separator - Sets the separator between the units (defaults to ".").
+  :delimiter - Sets the thousands delimiter (defaults to ",").
+  :format - Sets the format for non-negative numbers (defaults to "%u%n"). Fields are %u for the currency, and %n for the number.
+  :negative_format - Sets the format for negative numbers (defaults to prepending an hyphen to the formatted number given by :format). Accepts the same fields than :format, except %n is here the absolute value of the number.
+  :raise - If true, raises InvalidNumberError when the argument is invalid.
+endsnippet
+
+snippet num "to human"
+number_to_human(${1:number})
+endsnippet
+
+snippet num+ "to human"
+number_to_human(${1:number},
+  locale: ${2} Sets the locale to be used for formatting (defaults to current locale).
+  precision: ${3} Sets the precision of the number (defaults to 3).
+  significant: ${4} If true, precision will be the # of significant_digits. If false, the # of fractional digits (defaults to true)
+  separator: ${5} Sets the separator between the fractional and integer digits (defaults to ".").
+  delimiter: ${6} Sets the thousands delimiter (defaults to "").
+  strip_insignificant_zeros: ${7} If true removes insignificant zeros after the decimal separator (defaults to true)
+  units: ${8} A Hash of unit quantifier names. Or a string containing an i18n scope where to find this hash. It might have the following keys:
+    integers: :unit, :ten, *:hundred, :thousand, :million, *:billion, :trillion, *:quadrillion
+    fractionals: :deci, :centi, *:mili, :micro, :nano, *:pico, :femto
+  format: ${9} Sets the format of the output string (defaults to "%n %u"). The field types are:
+    %u - The quantifier (ex.: \u2018thousand\u2019)
+    %n - The number
+  raise: ${10} - If true, raises InvalidNumberError when the argument is invalid.
+)
+endsnippet
+
+snippet num "to human size"
+number_to_human_size(${1:number})
+endsnippet
+
+snippet num+ "to human size"
+number_to_human_size(${1:number},
+  :locale - Sets the locale to be used for formatting (defaults to current locale).
+  :precision - Sets the precision of the number (defaults to 3).
+  :significant - If true, precision will be the # of significant_digits. If false, the # of fractional digits (defaults to true)
+  :separator - Sets the separator between the fractional and integer digits (defaults to ".").
+  :delimiter - Sets the thousands delimiter (defaults to "").
+  :strip_insignificant_zeros - If true removes insignificant zeros after the decimal separator (defaults to true)
+  :prefix - If :si formats the number using the SI prefix (defaults to :binary)
+  :raise - If true, raises InvalidNumberError when the argument is invalid.
+  )
+endsnippet
+
+snippet num "to percentage"
+number_to_percentage(${1:number}, precision: ${2}, significant: ${3})
+endsnippet
+
+snippet num+ "to percentage"
+number_to_percentage(${1:number},
+  :locale - Sets the locale to be used for formatting (defaults to current locale).
+  :precision - Sets the precision of the number (defaults to 3).
+  :significant - If true, precision will be the # of significant_digits. If false, the # of fractional digits (defaults to false).
+  :separator - Sets the separator between the fractional and integer digits (defaults to ".").
+  :delimiter - Sets the thousands delimiter (defaults to "").
+  :strip_insignificant_zeros - If true removes insignificant zeros after the decimal separator (defaults to false).
+  :format - Specifies the format of the percentage string The number field is %n (defaults to "%n%").
+  :raise - If true, raises InvalidNumberError when the argument is invalid.
+endsnippet
+
+snippet num "to phone"
+number_to_phone(${1:number})
+endsnippet
+
+snippet num+ "to phone"
+number_to_phone(number, options = {}) Link
+:area_code - Adds parentheses around the area code.
+:delimiter - Specifies the delimiter to use (defaults to "-").
+:extension - Specifies an extension to add to the end of the generated number.
+:country_code - Sets the country code for the phone number.
+:raise - If true, raises InvalidNumberError when the argument is invalid.
+endsnippet
+
+snippet num "with delimiter"
+number_with_delimiter(${1:number})
+endsnippet
+
+snippet num+ "with delimiter"
+number_with_delimiter(${1:number},
+  locale: ${2:locale},
+  delimiter: ${3:delimiter},
+  separator: ${4},
+  raise: ${5} # If true, raises InvalidNumberError when the argument is invalid.
+)
+endsnippet
+
+snippet num "with precision"
+number_with_precision(${1:number}, precision: ${2:precision})
+endsnippet
+
+snippet num+ "with precision"
+number_with_precision(number,
+  :locale - Sets the locale to be used for formatting (defaults to current locale).
+  :precision - Sets the precision of the number (defaults to 3).
+  :significant - If true, precision will be the # of significant_digits. If false, the # of fractional digits (defaults to false).
+  :separator - Sets the separator between the fractional and integer digits (defaults to ".").
+  :delimiter - Sets the thousands delimiter (defaults to "").
+  :strip_insignificant_zeros - If true removes insignificant zeros after the decimal separator (defaults to false).
+  :raise - If true, raises InvalidNumberError when the argument is invalid.
+endsnippet

@@ -1,0 +1,67 @@
+snippet proc
+-- Notes: ${1}
+DROP PROCEDURE IF EXISTS sp${2:ProcName}//
+CREATE PROCEDURE sp$2(
+  IN inNumClientIp INTEGER UNSIGNED,
+  IN inStrSid VARCHAR (31),
+  ${3},
+  OUT outStrError varchar(255)
+)
+DETERMINISTIC
+proc:BEGIN
+     SET outStrError = 'sp$2: error';
+  ${4}
+
+  CALL spInsertUserAction(inNumClientIp, inStrSid, '$2', '', true);
+
+     SET outStrError = 'sp$2: success';
+END// -- _sp$2
+endsnippet
+
+snippet log
+CALL spInsertUserAction(inNumClientIp, inStrSid, 'sp${1}', '', true);
+# select
+# view
+# insert
+# update
+# File header
+endsnippet
+
+snippet cre
+CREATE TABLE ${1:table_name} (
+  id INT UNSIGNED AUTO_INCREMENT,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+endsnippet
+
+snippet id
+id INT UNSIGNED AUTO_INCREMENT,
+endsnippet
+
+snippet pri
+PRIMARY KEY (id)
+endsnippet
+
+snippet uni
+UNIQUE KEY index_${1:table_name}_on_${2:column} (${2})
+endsnippet
+
+snippet fk
+CONSTRAINT ${1:thisTableName} ${2:otherTableName} fk FOREIGN KEY (${3:ThisColumnName}) REFERENCES $2 (id)
+endsnippet
+
+snippet nn
+NOT NULL
+endsnippet
+
+snippet var
+VARCHAR(512)
+endsnippet
+
+snippet dt
+DATETIME
+endsnippet
+
+snippet bi
+BIGINT
+endsnippet

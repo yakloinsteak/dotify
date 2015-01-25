@@ -1,0 +1,2 @@
+setlocal cursorcolumn
+setlocal foldmethod=indent

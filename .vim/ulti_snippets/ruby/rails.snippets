@@ -1,0 +1,42 @@
+snippet anaf "Accepts Nested Attributes" !b
+accepts_nested_attributes_for ${1:item}${2:, item2}
+endsnippet
+
+snippet mod+
+module ${1:`!v substitute(Filename(), '\([a-z]\+\)_*', '\u\1', 'g')`}
+  extend ActiveSupport::Concern
+
+  module ClassMethods
+  end
+
+  included do
+  end
+
+end
+endsnippet
+
+snippet mod-
+module ${1:name}
+  ${2:body}
+end
+endsnippet
+
+snippet befs
+before_save :${1:action}
+endsnippet
+
+snippet befv
+before_validation :${1:action}
+endsnippet
+
+snippet trace
+Rails.logger.error '================================================================================'
+endsnippet
+
+snippet tracer
+Rails.logger.error '================================================================================'
+endsnippet
+
+snippet pry
+binding.pry
+endsnippet
