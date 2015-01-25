@@ -88,8 +88,6 @@ inoremap {{ {}<esc>ha
 inoremap [[ []<esc>ha
 inoremap "" ""<esc>ha
 inoremap '' ''<esc>ha
-inoremap << <><esc>ha
-inoremap // //<esc>ha
 inoremap <bar><bar> <bar><bar><esc>ha
 
 " Delete whole line into blackhole
