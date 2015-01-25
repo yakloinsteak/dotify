@@ -1,0 +1,33 @@
+function remotes
+{
+  tmux new-window -n Remotes
+  tmux select-window -t Remotes
+
+  # First one
+  tmux send-keys 'ssh g1' C-m
+
+  tmux split-window -t Remotes 'ssh g2'
+  tmux select-layout -t Remotes tiled
+
+  tmux split-window -t Remotes 'ssh g4'
+  tmux select-layout -t Remotes tiled
+
+  tmux split-window -t :Remotes 'ssh g5'
+  tmux select-layout -t :Remotes tiled
+
+  tmux split-window -t :Remotes 'ssh g8'
+  tmux select-layout -t :Remotes tiled
+
+  tmux set-option -t :Remotes synchronize-panes on
+
+  ## Database
+
+  tmux new-window -n RemotesDB
+  tmux select-window -t RemotesDB
+
+  # First one
+  tmux send-keys 'ssh g3' C-m
+
+  tmux split-window -t RemotesDB 'ssh g3'
+  tmux select-layout -t RemotesDB tiled
+}

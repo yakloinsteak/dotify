@@ -1,0 +1,8 @@
+function ve
+{
+  vim --servername $SNAME --remote-send ':tabnew'
+  foreach i ($@)
+    echo Opening in $SNAME: $i
+    vim --servername $SNAME --remote $i
+  end
+}

@@ -1,0 +1,40 @@
+function tmux-red
+{
+  BASE="$HOME/prj/red"
+  cd $BASE
+  #bundle
+
+  if [ ! -e '/tmp/started_ts' ];
+    rake thinking_sphinx:start
+    touch /tmp/started_ts
+  then
+  fi
+
+  PATH=/usr/local/bin:$PATH
+
+  tmux new-session -s red -d
+
+  tmux rename-window  -t red:0 'spec'
+  tmux new-window  -t red:1 -n db
+  tmux new-window  -t red:2 -n http
+
+  tmux new-window  -t red:10
+  tmux join-pane -s red:10 -t red:http
+
+  tmux new-window  -t red:3 -n con
+  tmux new-window  -t red:4 -n vim
+  tmux new-window  -t red:5 -n zsh
+
+  sleep 1
+
+  tmux send-keys  -t red:0 "cd ${BASE}" C-m
+  tmux send-keys  -t red:0 "guard" C-m
+  tmux send-keys  -t red:1 "./script/dbconsole -p" C-m
+  tmux send-keys  -t red:2.0 "./script/server -p 3000" C-m
+  tmux send-keys  -t red:2.1 "cd ../mosaic && ./mosaic.rb" C-m
+  tmux send-keys  -t red:3 "./script/console" C-m
+  tmux send-keys  -t red:4 "vim --servername red app/models/gigapan.rb" C-m
+
+  tmux select-window -t red:5
+  tmux attach-session -t red
+}

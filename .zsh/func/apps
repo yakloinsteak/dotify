@@ -1,0 +1,10 @@
+#!/usr/bin/zsh
+
+function apps() {
+  firefox&
+  pidgin&
+  akregator&
+  cd /prj/redhawk
+  gitg&
+  parcellite&
+}

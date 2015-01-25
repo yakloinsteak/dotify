@@ -1,0 +1,22 @@
+function tmux-boot
+{
+  BASE="$HOME/prj/bootstrap"
+  SNAME=boot
+  cd $BASE
+  bundle
+
+  tmux new-session -d -s Bootstrap -n spec
+  tmux new-window -t Bootstrap:1 -n db
+  tmux new-window -t Bootstrap:2 -n http
+  tmux new-window -t Bootstrap:3 -n con
+  tmux new-window -t Bootstrap:4 -n vim
+  tmux new-window -t Bootstrap:5 -n zsh
+
+  tmux send-keys -t Bootstrap:0 "guard" C-m
+  tmux send-keys -t Bootstrap:1 "rails db -p" C-m
+  tmux send-keys -t Bootstrap:2 "unicorn -p 4000" C-m
+  tmux send-keys -t Bootstrap:3 "rails p" C-m
+
+  tmux select-window -t Bootstrap:5
+  tmux attach-session -t Bootstrap
+}

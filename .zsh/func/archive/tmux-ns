@@ -1,0 +1,21 @@
+function tmux-ns
+{
+  BASE="$HOME/prj/netsuite"
+  cd $BASE
+
+  PATH=/usr/local/bin:$PATH
+
+  tmux new-session -s netsuite -d
+
+  tmux new-window -t netsuite:3 -n con
+  tmux new-window -t netsuite:4 -n vim
+  tmux new-window -t netsuite:5 -n zsh
+
+  sleep 1
+
+  tmux send-keys  -t netsuite:3 "rhino" C-m
+  tmux send-keys  -t netsuite:4 "vim --servername netsuite printing/liberty.js" C-m
+
+  tmux select-window -t netsuite:6
+  tmux attach-session -t netsuite
+}

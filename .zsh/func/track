@@ -1,0 +1,5 @@
+function track
+{
+  branch=`git br -a --color=never | grep --color=never '^*' | cut -f2 -d' '`
+  git branch --set-upstream-to origin/$branch
+}

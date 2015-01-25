@@ -1,0 +1,26 @@
+function tmux-ds
+{
+  BASE="$HOME/prj/ds"
+  export SNAME=ds
+  cd $BASE
+  bundle
+
+  tmux new-session -d -s 'DomainService' -n spec
+  tmux new-window -t DomainService:10
+  tmux join-pane -s DomainService:10 -t DomainService:spec
+  tmux new-window -t DomainService:1 -n db
+  tmux new-window -t DomainService:2 -n http
+  tmux new-window -t DomainService:3 -n con
+  tmux new-window -t DomainService:4 -n vim
+  tmux new-window -t DomainService:5 -n zsh
+
+  tmux send-keys -t DomainService:0.0 "spork -p 8990" C-m
+  tmux send-keys -t DomainService:0.1 "guard" C-m
+  tmux send-keys -t DomainService:1 "rails db -p" C-m
+  tmux send-keys -t DomainService:2 "rails s -p 5000" C-m
+  tmux send-keys -t DomainService:3 "rails p" C-m
+  tmux send-keys -t DomainService:4 "vim --servername ds Gemfile" C-m
+
+  tmux select-window -t DomainService:5
+  tmux attach-session -t DomainService
+}

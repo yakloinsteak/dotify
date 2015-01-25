@@ -1,0 +1,22 @@
+function tmux-viewer
+{
+  BASE="$HOME/prj/gt-viewer"
+  cd $BASE
+
+  tmux detach
+
+  tmux rename-window -t viewer:0 'test'
+  #tmux new-window -t viewer:1 -n nop
+  #tmux new-window -t viewer:2 -n nop
+
+  tmux new-window -t viewer:3 -n con
+  tmux new-window -t viewer:4 -n vim
+  tmux new-window -t viewer:5 -n zsh
+
+  tmux send-keys -t viewer:0 "cd ${BASE}" C-m
+  tmux send-keys -t viewer:0 "rake test" C-m
+  tmux send-keys -t viewer:4 "vim --servername viewer src/GigaPan.as" C-m
+
+  tmux select-window -t viewer:5
+  tmux attach-session -t viewer
+}

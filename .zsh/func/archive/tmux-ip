@@ -1,0 +1,20 @@
+function tmux-ip
+{
+  BASE="$HOME/prj/legitip"
+  cd $BASE
+  bundle
+
+  tmux new-session -d -s ip -n spec
+  tmux new-window -t ip:1 -n db
+  tmux new-window -t ip:2 -n http
+  tmux new-window -t ip:3 -n con
+  tmux new-window -t ip:4 -n vim
+  tmux new-window -t ip:5
+
+  tmux send-keys -t ip:0 "guard" C-m
+  tmux send-keys -t ip:3 "pry" C-m
+  tmux send-keys -t ip:4 "vim --servername legitip lib/legitip.rb" C-m
+
+  tmux select-window -t ip:5
+  tmux attach-session -t ip
+}

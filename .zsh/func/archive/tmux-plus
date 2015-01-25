@@ -1,0 +1,23 @@
+function tmux-plus
+{
+  BASE="$HOME/prj/plus"
+  SNAME=plus
+  cd $BASE
+  bundle
+
+  tmux new-session -d -s Plus -n spec
+  tmux new-window -t Plus:1 -n db
+  tmux new-window -t Plus:2 -n http
+  tmux new-window -t Plus:3 -n con
+  tmux new-window -t Plus:4 -n vim
+  tmux new-window -t Plus:5
+
+  tmux send-keys -t Plus:0 "guard" C-m
+  tmux send-keys -t Plus:1 "redis-cli" C-m
+  tmux send-keys -t Plus:2 "rackup -p 3001" C-m
+  tmux send-keys -t Plus:3 "pry" C-m
+  tmux send-keys -t Plus:4 "vim --servername plus lib/google_plus/api/base.rb" C-m
+
+  tmux select-window -t Plus:5
+  tmux attach-session -t Plus
+}

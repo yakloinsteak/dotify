@@ -1,0 +1,23 @@
+function tmux-piano
+{
+  BASE="$HOME/prj/pianodb"
+  SNAME=piano
+  cd $BASE
+  bundle
+
+  tmux new-session -d -s Piano -n spec
+  tmux new-window -t Piano:1 -n db
+  tmux new-window -t Piano:2 -n http
+  tmux new-window -t Piano:3 -n con
+  tmux new-window -t Piano:4 -n vim
+  tmux new-window -t Piano:5 -n zsh
+
+  tmux send-keys -t Piano:0 "guard" C-m
+  tmux send-keys -t Piano:1 "rails db -p" C-m
+  tmux send-keys -t Piano:2 "unicorn -p 4000" C-m
+  tmux send-keys -t Piano:3 "rails c" C-m
+  tmux send-keys -t Piano:4 "vim --servername piano app/models/composer.rb" C-m
+
+  tmux select-window -t Piano:5
+  tmux attach-session -t Piano
+}

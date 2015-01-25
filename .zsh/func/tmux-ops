@@ -1,0 +1,22 @@
+function tmux-ops
+{
+  BASE="$HOME"
+  cd $BASE
+
+  PATH=/usr/local/bin:$PATH
+
+  tmux new-session -s ops -d
+
+  tmux rename-window -t ops:0 'pwman'
+  tmux new-window -t ops:1 -n music
+  tmux new-window -t ops:2 -n rcfiles
+  tmux new-window -t ops:3 -n irc
+
+  tmux send-keys -t ops:0 "while true; do clear; pwman3; clear; tmux clear-history; done" C-m
+  tmux send-keys -t ops:1 "ncmpcpp" C-m
+  tmux send-keys -t ops:2 "vim -p .vimrc .vim/vimrc/mappings.vim .vim/snippets/ruby.snippets .config/awesome/rc.lua .tmux.conf" C-m
+  tmux send-keys -t ops:3 "irssi" C-m
+
+  tmux select-window -t ops:1
+  tmux attach-session -t ops
+}

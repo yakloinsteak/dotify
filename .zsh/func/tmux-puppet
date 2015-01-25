@@ -1,0 +1,16 @@
+function tmux-puppet
+{
+  BASE="$HOME/prj/puppet"
+  cd $BASE
+  bundle
+
+  tmux new-session -d -s puppet -n zsh
+  tmux new-window -t puppet:4 -n vim
+  tmux new-window -t puppet:5 -n vms
+  tmux split-window -t puppet:5 -h
+
+  tmux send-keys -t puppet:4 "vim --servername puppet manifests/site.pp" C-m
+
+  tmux select-window -t puppet:5
+  tmux attach-session -t puppet
+}

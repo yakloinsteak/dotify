@@ -1,0 +1,25 @@
+function giga
+{
+  BASE="$HOME/prj"
+  cd $BASE
+  tmux new-window -n gigapan
+  tmux select-window -t gigapan
+  tmux send-keys 'ssh g1'
+
+  tmux split-window -t gigapan 'ssh g2'
+  tmux select-layout -t gigapan tiled
+  # Mysql
+  #tmux split-window -t gigapan 'ssh g3'
+  #tmux select-layout -t gigapan tiled
+  tmux split-window -t gigapan 'ssh g4'
+  tmux select-layout -t gigapan tiled
+  tmux split-window -t gigapan 'ssh g5'
+  tmux select-layout -t gigapan tiled
+  #tmux split-window -t gigapan 'ssh g6'
+  #tmux select-layout -t gigapan tiled
+  tmux send-keys 'export TERM=vt100'
+  tmux split-window -t gigapan 'ssh g8'
+  tmux select-layout -t gigapan tiled
+
+  tmux set-option -t :gigapan synchronize-panes on
+}

@@ -1,0 +1,22 @@
+function tmux-subst
+{
+  BASE="$HOME/prj/subst"
+  cd $BASE
+  bundle
+
+  tmux new-session -d -s subst -n spec
+  tmux new-window -t subst:1 -n db
+  tmux new-window -t subst:2 -n http
+  tmux new-window -t subst:3 -n con
+  tmux new-window -t subst:4 -n vim
+  tmux new-window -t subst:5 -n zsh
+
+  tmux send-keys -t subst:0 "guard" C-m
+  tmux send-keys -t subst:1 "rails db -p" C-m
+  tmux send-keys -t subst:2 "unalias unicorn && unicorn -p 3100" C-m
+  tmux send-keys -t subst:3 "rails c" C-m
+  tmux send-keys -t subst:4 "vim Gemfile" C-m
+
+  tmux select-window -t subst:5
+  tmux attach-session -t subst
+}

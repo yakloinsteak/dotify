@@ -1,0 +1,34 @@
+function tmux-nsr
+{
+  BASE="$HOME/prj/nsr"
+  cd $BASE
+  #bundle
+
+  if [ ! -e '/tmp/started_nsr' ];
+  then
+    touch /tmp/started_nsr:w
+  fi
+
+  PATH=/usr/local/bin:$PATH
+
+  tmux new-session -s nsr -d
+
+  tmux rename-window -t nsr:0 'spec'
+  tmux new-window -t nsr:1 -n db
+  tmux new-window -t nsr:2 -n http
+  tmux new-window -t nsr:3 -n con
+  tmux new-window -t nsr:4 -n vim
+  tmux new-window -t nsr:5 -n zsh
+
+  sleep 1
+
+  tmux send-keys -t nsr:0 "cd ${BASE}" C-m
+  tmux send-keys -t nsr:0 "guard" C-m
+  tmux send-keys -t nsr:1 "bundle exec rails db" C-m
+  tmux send-keys -t nsr:2 "bundle exec rails s -p 5000" C-m
+  tmux send-keys -t nsr:3 "bundle exec rails c" C-m
+  tmux send-keys -t nsr:4 "vim --servername nsr Gemfile" C-m
+
+  tmux select-window -t nsr:5
+  tmux attach-session -t nsr
+}

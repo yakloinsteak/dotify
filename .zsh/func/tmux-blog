@@ -1,0 +1,21 @@
+function tmux-blog
+{
+  BASE="$HOME/prj/blog"
+  cd $BASE
+
+  tmux new-session -d -s blog -n spec
+  tmux new-window -t blog:1 -n db
+  tmux new-window -t blog:2 -n http
+  tmux new-window -t blog:3 -n con
+  tmux new-window -t blog:4 -n vim
+  tmux new-window -t blog:5 -n zsh
+
+  tmux send-keys -t blog:0 "guard" C-m
+  tmux send-keys -t blog:1 "rails db -p" C-m
+  tmux send-keys -t blog:2 "rails s -p 3333" C-m
+  tmux send-keys -t blog:3 "pry -r blog" C-m
+  tmux send-keys -t blog:4 "vim --servername blog Gemfile" C-m
+
+  tmux select-window -t blog:5
+  tmux attach-session -t blog
+}

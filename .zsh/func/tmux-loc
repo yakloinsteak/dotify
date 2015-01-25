@@ -1,0 +1,33 @@
+function tmux-loc
+{
+  BASE="$HOME/prj/loc"
+  cd $BASE
+  #bundle
+
+  if [ ! -e '/tmp/started_loc' ];
+  then
+    echo "Starting location specific things"
+    touch /tmp/started_loc
+  fi
+
+  PATH=/usr/local/bin:$PATH
+
+  tmux new-session -s loc -d
+
+  tmux rename-window -t loc:0 'spec'
+  tmux new-window -t loc:1 -n db
+  tmux new-window -t loc:2 -n http
+  tmux new-window -t loc:3 -n con
+  tmux new-window -t loc:4 -n vim
+  tmux new-window -t loc:5 -n zsh
+
+  sleep 1
+
+  tmux send-keys  -t loc:0 "cd ${BASE}" C-m
+  tmux send-keys  -t loc:2 "RELOADER=true thin start -p 4567" C-m
+  tmux send-keys  -t loc:3 "irb" C-m
+  tmux send-keys  -t loc:4 "vim --servername loc server.rb" C-m
+
+  tmux select-window -t loc:5
+  tmux attach-session -t loc
+}

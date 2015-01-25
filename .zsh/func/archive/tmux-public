@@ -1,0 +1,23 @@
+function tmux-public
+{
+  BASE="$HOME/prj/public"
+  SNAME=public
+  cd $BASE
+  bundle
+
+  tmux new-session -d -s Public -n spec
+  tmux new-window -t Public:1 -n db
+  tmux new-window -t Public:2 -n http
+  tmux new-window -t Public:3 -n con
+  tmux new-window -t Public:4 -n vim
+  tmux new-window -t Public:5 -n zsh
+
+  tmux send-keys -t Public:0 "guard" C-m
+  tmux send-keys -t Public:1 "rails db -p" C-m
+  tmux send-keys -t Public:2 "unalias unicorn && unicorn -p 3100" C-m
+  tmux send-keys -t Public:3 "rails c" C-m
+  tmux send-keys -t Public:4 "vim --servername public Gemfile" C-m
+
+  tmux select-window -t Public:5
+  tmux attach-session -t Public
+}

@@ -1,0 +1,40 @@
+function tmux-zip
+{
+  BASE="$HOME/prj/zip"
+  mkdir -p $BASE
+  cd $BASE
+
+  if [ ! -e '/tmp/started_zip' ];
+  then
+    touch /tmp/started_zip
+  fi
+
+  PATH=/usr/local/bin:$PATH
+
+  tmux new-session -s zip -d
+
+  tmux rename-window -t zip:0 'spec'
+  tmux new-window -t zip:1 -n db
+
+  tmux new-window -t zip:2 -n http
+  tmux split-window -h -t zip:2 -p 65
+
+  tmux new-window -t zip:3 -n con
+  tmux new-window -t zip:4 -n vim
+  tmux new-window -t zip:5 -n zsh
+
+  sleep 1
+
+  tmux send-keys -t zip:0 "cd ${BASE}" C-m
+  tmux send-keys -t zip:0 "guard" C-m
+  tmux send-keys -t zip:1 "bundle exec rails db" C-m
+
+  tmux send-keys -t zip:2.0 "bundle exec thin start -p 3000" C-m
+  tmux send-keys -t zip:2.1 "bundle exec rake log:clear && tail -f log/development.log" C-m
+
+  tmux send-keys -t zip:3 "bundle exec rails c" C-m
+  tmux send-keys -t zip:4 "vim --servername zip Gemfile" C-m
+
+  tmux select-window -t zip:5
+  tmux attach-session -t zip
+}

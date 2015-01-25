@@ -1,0 +1,14 @@
+function tmux-misc
+{
+  cd ~
+
+  tmux new-session -d -s Monitor -n top
+  tmux new-window -t Monitor:1 -n iotop
+  tmux new-window -t Monitor:2 -n mytop
+
+  tmux send-keys -t Monitor:0 "vim -p .vimrc .vim/vimrc/mappings.vim .vim/snippets/ruby.snippets" C-m
+  tmux send-keys -t Monitor:1 "vim .config/awesome/rc.lua" C-m
+
+  tmux select-window -t Monitor:1
+  tmux attach-session -t Monitor
+}

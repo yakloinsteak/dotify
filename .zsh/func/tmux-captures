@@ -1,0 +1,21 @@
+function tmux-captures
+{
+  BASE="$HOME/prj/capture"
+  SNAME=captures
+  cd $BASE
+  bundle
+
+  tmux new-session -d -s 'Captures' -n spec
+  tmux new-window -t Captures:1 -n db
+  tmux new-window -t Captures:3 -n con
+  tmux new-window -t Captures:4 -n vim
+  tmux new-window -t Captures:5 -n zsh
+
+  tmux send-keys -t Captures:0 "guard" C-m
+  tmux send-keys -t Captures:1 "sqlite3 db/domains.db" C-m
+  tmux send-keys -t Captures:3 "pry" C-m
+  tmux send-keys -t Captures:4 "vim --servername captures lib/batch.rb" C-m
+
+  tmux select-window -t Captures:5
+  tmux attach-session -t Captures
+}

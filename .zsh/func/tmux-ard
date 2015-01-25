@@ -1,0 +1,20 @@
+function tmux-ard
+{
+  BASE="$HOME/prj/arduino"
+  cd $BASE
+
+
+  tmux new-session -s Arduino -d
+
+  tmux rename-window -t Arduino:0 'zsh'
+  tmux new-window -t Arduino:4 -n vim
+  tmux new-window -t Arduino:5 -n zsh
+
+  sleep 1
+
+  tmux send-keys  -t Arduino:0 "cd ${BASE}" C-m
+  tmux send-keys  -t Arduino:4 "vim --servername loc Makefile" C-m
+
+  tmux select-window -t Arduino:5
+  tmux attach-session -t Arduino
+}

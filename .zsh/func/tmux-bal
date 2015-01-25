@@ -1,0 +1,34 @@
+function tmux-ard
+{
+  BASE="$HOME/prj/arduino"
+  cd $BASE
+
+  PATH=/usr/local/bin:$PATH
+
+  tmux new-session -s ard -d
+
+  tmux rename-window -t ard:0 'spec'
+  tmux new-window -t ard:1 -n db
+
+  tmux new-window -t ard:2 -n http
+  tmux split-window -h -t ard:2 -p 65
+
+  tmux new-window -t ard:3 -n con
+  tmux new-window -t ard:4 -n vim
+  tmux new-window -t ard:5 -n zsh
+
+  sleep 1
+
+  tmux send-keys -t ard:0 "cd ${BASE}" C-m
+  tmux send-keys -t ard:0 "" C-m
+  tmux send-keys -t ard:1 "" C-m
+
+  tmux send-keys -t ard:2.0 "" C-m
+  tmux send-keys -t ard:2.1 "" C-m
+
+  tmux send-keys -t ard:3 "bundle exec rails c" C-m
+  tmux send-keys -t ard:4 "vim --servername Makefile" C-m
+
+  tmux select-window -t ard:5
+  tmux attach-session -t ard
+}

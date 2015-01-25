@@ -1,0 +1,17 @@
+function tmux-misc
+{
+  cd ~
+
+  tmux new-session -d -s Misc -n vim
+  tmux new-window -t Misc:1 -n edit
+  tmux new-window -t Misc:2 -n todo
+  tmux new-window -t Misc:3 -n cmus
+
+  tmux send-keys -t Misc:0 "vim -p .vimrc .vim/plugin/mappings.vim .vim/snippets/ruby/general.snippets" C-m
+  tmux send-keys -t Misc:1 "vim -p .config/awesome/rc.lua .zshrc .tmux.conf .gitconfig" C-m
+  tmux send-keys -t Misc:2 "vim .todo.taskpaper" C-m
+  tmux send-keys -t Misc:3 "cmus" C-m
+
+  tmux select-window -t Misc:1
+  tmux attach-session -t Misc
+}
