@@ -54,7 +54,7 @@ sudo apt-get update
 
 # Ubuntu only
 sudo apt-get install firefox coffeescript nodejs nodejs-dev ubuntu-restricted-extras libappindicator1 icedtea-7-plugin synergy quicksynergy gufw
-sudo apt-get install mpc wireshark mercurial cmake openjdk-7-jre
+sudo apt-get install mpc wireshark mercurial cmake openjdk-7-jre pandoc
 #sudo apt-get install caffeine
 
 # Crunchbang or Ubuntu
