@@ -1,0 +1,31 @@
+:output:
+  Website:
+    :options:
+      :fields:
+      - id
+      - name
+  Tag:
+    :options:
+      :fields:
+      - id
+      - name
+      - description
+      - created_at
+      - namespace
+      - predicate
+      - value
+  DefaultPredicate:
+    :class: :auto_table
+    :options:
+      :fields:
+      - rule
+      - predicate
+      - filter
+  MachineTagTree:
+    :class: TagTree
+    :options:
+      :fields:
+      - id
+      - name
+      - description
+      - quick_mode_tag_list
