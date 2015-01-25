@@ -43,10 +43,6 @@ export WB_NO_GNOME_KEYRING=1
 
 export VIM_SERVER=red
 
-# including home laptop
-#export PCUC_HOSTS=home,linode,white,zorkmaster,chris
-#export PCUC_PERCENTS=0.18,0.23,0.19,0.10,0.16,0.16
-
 # Used in cucumber
 export CUCUMBER_FORMAT=progress
 export FAST=true
@@ -58,3 +54,10 @@ export JRE_HOME=/usr/local/java/jdk1.8.0_20/jre
 export PATH=$PATH:$HOME/bin:$JRE_HOME/bin
 
 export NS3_PORT=4000
+
+export EC2_HOME=/usr/local/ec2/`ls /usr/local/ec2`
+export PATH=$PATH:$EC2_HOME/bin
+
+if [ -x /usr/bin/dircolors ] ; then
+  eval `dircolors ~/.dotify/.dircolors`
+fi

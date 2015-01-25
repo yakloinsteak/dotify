@@ -25,6 +25,9 @@ source ~/.zsh/prompt.zsh
 source ~/.zsh/complete.zsh
 source ~/.zsh/locationinc.zsh
 source ~/.zsh/autoloads.zsh
+if [ -e ~/.zsh/secrets.zsh ] ; then
+  source ~/.zsh/secrets.zsh
+fi
 
 function chpwd {
   if [[ -e .setup.zsh ]] ; then
