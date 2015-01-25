@@ -1,0 +1,153 @@
+# cd $HOME
+# git clone giturl .dotify
+
+sudo apt-get install git
+
+# Sync up modules
+cd ~/.dotify
+git submodule init
+git submodule sync
+git submodule update
+
+# from home (do in a shell script):
+cd $HOME
+ln -nsf .dotify/* .
+ln -nsf .dotify/.* .
+ln -nsf .dotify/.config/awesome .config/awesome
+ln -nsf .dotify/.config/tint2 .config/tint2
+ln -nsf .dotify/.config/Thunar .config/Thunar
+# fonts in ~/.config
+
+# Vim completion
+cd ~/.vim/bundle/YouCompleteMe
+sudo apt-get install cmake
+git submodule --init --recursive
+./install.sh --clang-completer
+
+
+echo "sudo vi /etc/slim.conf to add awesome to the line matching ^sessions on crunchbang"
+
+sudo apt-add-repository ppa:caffeine-developers/ppa
+
+# laptop overheating prevention tools
+sudo add-apt-repository ppa:linrunner/tlp
+sudo apt-get update
+sudo apt-get install tlp tlp-rdw
+echo "Laptop: sudo tlp start"
+echo "Desktop: sudo tlp false"
+
+# encrypted DVD playing
+sudo apt-get install libdvdread4
+sudo /usr/share/doc/libdvdread4/install-css.sh
+
+# hipchat
+sudo su -
+echo "deb http://downloads.hipchat.com/linux/apt stable main" > /etc/apt/sources.list.d/atlassian-hipchat.list
+wget -O - https://www.hipchat.com/keys/hipchat-linux.key | apt-key add -
+apt-get update
+apt-get install hipchat
+
+#sudo apt-add-repository ppa:sharpie/for-science
+#sudo apt-add-repository ppa:sharpie/postgis-stable
+#sudo apt-add-repository ppa:ubuntugis/ubuntugis-unstable
+
+sudo apt-get update
+
+# Ubuntu only
+sudo apt-get install firefox coffeescript nodejs nodejs-dev ubuntu-restricted-extras libappindicator1 icedtea-7-plugin synergy quicksynergy gufw
+sudo apt-get install mpc wireshark mercurial cmake
+#sudo apt-get install caffeine
+
+# Crunchbang or Ubuntu
+sudo apt-get install ack-grep libv8-dev duply python3 thunar tint2 autocutsel automake awesome awesome-extra build-essential ccache chromium-browser exif exuberant-ctags gdal-bin gimp git gitg gksu gparted gthumb imagemagick iotop kcharselect keychain libboost-all-dev libcurl4-openssl-dev libevent-dev libgsasl7-dev liblapack-dev libpq-dev libproj-dev libqt4-core libqt4-gui libqtwebkit4 libreoffice libsasl2-dev libtool libxml2-dev libxslt-dev lsb-core monit mpd mysql-client mytop ncmpcpp netpbm network-manager-openvpn network-manager-openvpn-gnome openssl openvpn osmosis parcellite pgadmin3 pidgin postgis postgresql-client printer-driver-gutenprint pwgen python python-boto qt4-dev-tools ranger r-base rsync rubygems ruby-qt4-webkit s3cmd screen scrot sqlite3 sshfs terminator tmux traceroute vim vlock whois x11-xserver-utils xfce4-power-manager xsel zsh libgdbm-dev libffi-dev build-essential bison openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-0 libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev autoconf libc6-dev python-pip xdotool exiv2 vlc tsung ptop gtk-recordmydesktop virtualbox virtualbox-guest-additions-iso perceptualdiff paprefs xscreensaver xclip openssh-server irssi inkscape tig qrencode python-pygments osm2pgsql xscreensaver-gl pdftk
+
+# Servers
+sudo apt-get install redis-server xserver-xephyr postgresql-9.3-postgis-2.1
+
+sudo ln -s /usr/bin/ack-grep /usr/local/bin/ack
+
+\curl -sSL https://get.rvm.io | bash -s stable --ruby
+
+# Not sure why these don't install
+#sudo apt-get install pgbadger ck-grep
+
+# Audio (pulse)
+sudo cp mpd.conf /etc
+
+# Might be needed
+sudo usermod -aG pulse-access,pulse blackman
+
+# Git repos
+mkdir -p ~/prj
+cd ~/prj
+git clone git@github.com:LocationInc/SecurityGauge.git sg
+git clone git@github.com:LocationInc/NeighborhoodScout.git ns3
+git clone git@github.com:LocationInc/LocationInc.com.git loc
+git clone git@github.com:LocationInc/NSR.git nsr
+cd ..
+
+mkdir ~/screenshots
+
+# Firefox pentadactyl installation
+cd ~/prj
+hg clone http:/dactyl.googlecode.com/hg/ dactyl/
+cd dactyl
+make -C pentadactyl xpi
+
+# Javascript runtime (version can be different)
+# For crunchbang
+#wget http:/nodejs.org/dist/v0.10.26/node-v0.10.26.tar.gz/
+#tar -zxvf node-v0.10.26.tar.gz
+#cd node-v0.10.26
+#./configure
+#make
+#sudo make install
+#cd ..
+
+# Database setup
+sudo su - postgres
+createuser -s -w blackman
+createdb -O blackman blackman
+exit
+
+# Fonts
+cd ~
+mkdir -p .fonts.conf.d
+cp .dotify/10-powerline-symbols.conf .fonts.conf.d
+fc-cache -vf ~/.fonts
+
+# Powerline
+pip install --user powerline-status
+
+# Flash in chrome
+sudo apt-get install pepperflashplugin-nonfree
+sudo update-pepperflashplugin-nonfree --install
+
+# Nginx and passenger (https://www.phusionpassenger.com/documentation/Users%20guide%20Nginx.html#install_on_debian_ubuntu)
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 561F9B9CAC40B2F7
+sudo apt-get install apt-transport-https ca-certificates
+sudo su -
+echo 'deb https://oss-binaries.phusionpassenger.com/apt/passenger trusty main' > /etc/apt/sources.list.d/passenger.list
+sudo chown root: /etc/apt/sources.list.d/passenger.list
+sudo chmod 600 /etc/apt/sources.list.d/passenger.list
+sudo apt-get update
+sudo apt-get install nginx-extras passenger
+sudo mkdir -p /etc/nginx/ssl
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
+
+echo "Sound clients:"
+echo 'list-clients' | pacmd
+echo "Run chsh to change to zsh"
+
+echo "run paprefs and enable everything. Then reboot"
+
+
+# eclim: using eclipse and eclim for semantic completions.
+# Needs jdk 1.7+ and vim 7.1+ already installed. Need eclipse 4.4.x (luna)
+mkdir -p ~/tools
+cd ~/tools
+wget http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/luna/SR1a/eclipse-java-luna-SR1a-linux-gtk-x86_64.tar.gz&mirror_id=337
+tar -zxvf eclipse-java-luna-SR1a-linux-gtk-x86_64.tar.gz
+wget http://downloads.sourceforge.net/project/eclim/eclim/2.4.1/eclim_2.4.1.jar?r=http%3A%2F%2Feclim.org%2Finstall.html&ts=1422211131&use_mirror=tcpdiag
+java -jar eclim_2.4.1.jar
+
