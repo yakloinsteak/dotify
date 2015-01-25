@@ -1,0 +1,4 @@
+dd bs=1M count=512 if=/dev/zero of=test conv=fdatasync
+rm test
+
+df . | tail -1 | awk '{print $1}' | xargs hdparm -Tt

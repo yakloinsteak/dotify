@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+require 'github_api'
+require 'multi_json'
+require 'colorize'
+
+infered_repo = `git remote show origin | grep Fetch`.chomp.split(/:/).map{|x| x.split(/\./)}.flatten[-2]
+
+user, repo = infered_repo.split(%r{/})
+
+puts "Using #{user}/#{repo} as the repo\n\n".red
+
+Github.configure do |c|
+  c.basic_auth = 'yakloinsteak:YVvP@nD^I9qN'
+  c.user = user
+  c.repo = repo
+end
+
+require 'pry'
+Github.new.pull_requests.list.each do |pull_request|
+  puts "#{pull_request.head.ref.yellow} (#{pull_request.state})\n\n"
+  puts pull_request.body
+  puts "\n\n"
+end

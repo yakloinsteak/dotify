@@ -1,0 +1,4 @@
+#!/usr/bin/zsh
+
+now=`date`
+cucumber -p vim && git notes add -m "Cucumber passed ${now}"

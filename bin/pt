@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+
+current_branch = `git branch --no-color | grep '\*'`
+pt_id          = current_branch.match(/\d{6,}/)[0] rescue ''
+pt_id        ||= ARGV[0]
+commit_message = "#{pt_id}: TITLE\n\nURL\n\nDESC"
+description    = ''
+title          = ''
+
+unless pt_id.length == 0
+  pt_url = "https://www.pivotaltracker.com/story/show/#{pt_id}/"
+
+  if ENV['PT_API_KEY'] && ENV['PT_PROJECT_ID']
+    begin
+      require 'nokogiri'
+      xml = `curl -s -H "X-TrackerToken: #{ENV['PT_API_KEY']}" -X GET http://www.pivotaltracker.com/services/v3/projects/#{ENV['PT_PROJECT_ID']}/stories/#{pt_id}/`
+      doc = Nokogiri::XML(xml)
+      description = doc.at_css('description').text
+      title = doc.at_css('name').text
+    rescue
+      description = ''
+    end
+  end
+
+  #commit_message.gsub!(/ID/, pt_id)
+  commit_message.gsub!(/URL/, pt_url)
+  commit_message.gsub!(/DESC/, description)
+  commit_message.gsub!(/TITLE/, title)
+end
+
+puts commit_message

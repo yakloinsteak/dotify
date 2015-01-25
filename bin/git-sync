@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+puts "Fetching from origin"
+system('git fetch origin')
+
+staging_hash = `ssh ns3_staging cat cur/REVISION`.chomp
+production_hash = `ssh ns3_app1 cat cur/REVISION`.chomp
+
+puts "Updating staging hash locally"
+cmd = "git tag -f current_staging #{staging_hash}"
+system(cmd)
+
+puts "Updating production hash locally"
+cmd = "git tag -f current_production #{production_hash}"
+system(cmd)

@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+require 'shellwords'
+require 'fileutils'
+
+phone_path    = '/media/blackman'
+playlist_name = 'ipod.m3u'
+playlist_src  = "/home/blackman/.mpd/playlists/#{playlist_name}"
+playlist_dest = "#{phone_path}/Playlists/#{playlist_name}"
+ipod = true
+
+system("rm -rf #{phone_path}/Music/*")
+
+`cat #{playlist_src}`.split(/\n/).each do |file|
+  relative_dir = File.dirname(file)
+  source_dir =  "/home/blackman/Music/#{relative_dir}"
+  source_file = Shellwords.escape File.join("/home/blackman/Music", file)
+  destination_dir = Shellwords.escape("#{phone_path}/Music/#{relative_dir}".gsub(%r{\\}, ''))
+
+  cmds = [%<mkdir -p #{destination_dir}>]
+  cmds << %<rsync --inplace #{source_file} #{destination_dir}>
+
+  puts cmds.join(" && ")
+  system cmds.join(" && ")
+end
+
+if ipod
+  system("cat #{playlist_src} | sed -e 's/^/\\/Music\\//' | sed -e 's/\\\\//' > #{playlist_dest}")
+end

@@ -1,0 +1,4 @@
+# get target from `android list targets`
+
+android list targets
+android create project --target 1 --name GigaDash --path /home/blackman/prj/gigadash --activity GigaDashActivity --package com.gigapan.gigadash

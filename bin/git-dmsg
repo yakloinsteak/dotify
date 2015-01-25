@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+#require 'awesome_print'
+
+initial_lines = `git log master..dev | egrep '[0-9]{8,}'`.split(/\n/)
+#initial_lines = `git log dev~20..dev | egrep '[0-9]{8,}'`.split(/\n/)
+
+# cleanup
+lines = initial_lines.delete_if do |line|
+  line.match(/^(commit|Merge)/)
+end
+
+# organize
+groups = lines.group_by do |line|
+  line.match(/(?<pt_id>\d{8})/)['pt_id']
+end
+
+# output
+puts <<EOS
+Here's what is included in what I will soon deploy. If anybody sees something
+that shouldn't go out, please come see me or send me a text message
+(816-808-2890). Please check your stories after I send out an email announcing
+the deployment is finished. Thanks!\n
+EOS
+
+groups.each do |pt_id, pt_lines|
+  puts "https://www.pivotaltracker.com/story/show/#{pt_id}"
+  pt_lines.each do |line|
+    puts "   #{line.sub(/\[[\d]{8}\] ?/, '')}"
+  end
+  puts "="*70
+end

@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+current_branch=`git branch | grep ^\*`.split.last
+ref=`git reflog | grep checkout | awk '{print $6}' | uniq | grep -v master | grep -v dev | grep -v #{current_branch} | head -1`
+
+system("git checkout #{ref}")

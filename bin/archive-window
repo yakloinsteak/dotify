@@ -1,0 +1,3 @@
+unset TMUX
+tmux new-session -d -s history
+tmux move-window -t history

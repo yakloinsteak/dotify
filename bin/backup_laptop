@@ -1,0 +1,3 @@
+cd /home
+/usr/bin/rsync -a --exclude-from ~/.rsync_exclusions --progress /etc office:/mnt/largemarge/backups/sparky_etc
+/usr/bin/rsync -a --exclude-from ~/.rsync_exclusions --progress blackman office:/mnt/largemarge/backups/sparky

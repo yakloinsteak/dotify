@@ -1,0 +1,2 @@
+#echo $2
+timeout 10 $(ssh 127.0.0.1 -p 6060 tmux show-buffer \| xclip -d :0 -i -selection clipboard)

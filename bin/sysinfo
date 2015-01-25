@@ -1,0 +1,3 @@
+sudo lshw -html > system_info.html
+chromium-browser system_info.html
+rm system_info.html
