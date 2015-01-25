@@ -1,0 +1,1 @@
+screen -t DB 9 bash -l -c '/Volumes/Ganon/StartMySQL.command'

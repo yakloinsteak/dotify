@@ -1,0 +1,9 @@
+defmonitor off
+screen -t Spec 0 zsh -l
+screen -t MySQL 1 zsh -l
+screen -t Server 2 zsh -l
+screen -t Pry 3 zsh -l
+screen -t Vim 4 zsh -l
+screen -t zsh 5 zsh -l
+defmonitor on
+screen -t Long 9 zsh -l

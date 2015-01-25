@@ -1,0 +1,2 @@
+tmux set-buffer "secret here"
+tmux set-buffer "secret here2"
