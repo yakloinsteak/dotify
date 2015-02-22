@@ -1,7 +1,0 @@
-## Production setting on local machine
-defmonitor off
-setenv RAILS_ENV production
-screen -t ProdMySQL 11 bash -l -c 'cd /Users/blackman/projects/legitscript/legitweb && ./script/dbconsole -p'
-screen -t ProdServer 12 bash -l -c 'cd /Users/blackman/projects/legitscript/legitweb && ./script/server -p 3001'
-screen -t ProdConsole 13 bash -l -c 'cd /Users/blackman/projects/legitscript/legitweb && ./script/console'
-setenv RAILS_ENV development
