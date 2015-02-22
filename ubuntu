@@ -155,3 +155,6 @@ java -jar eclim_2.4.1.jar
 curl -O http://s3.amazonaws.com/ec2-downloads/ec2-api-tools.zip
 sudo mkdir /usr/local/ec2
 sudo unzip ec2-api-tools.zip -d /usr/local/ec2
+
+# Heroku
+wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
