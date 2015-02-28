@@ -112,3 +112,6 @@
 [submodule "powerline"]
 	path = powerline
 	url = git@github.com:Lokaltog/powerline.git
+[submodule ".vim/bundle/vim-tagbar"]
+	path = .vim/bundle/vim-tagbar
+	url = git@github.com:majutsushi/tagbar.git
