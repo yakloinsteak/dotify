@@ -1,3 +1,5 @@
+node.json
+chef_secrets.yml
 secrets.zsh
 test.sh
 test_api.production.sh
