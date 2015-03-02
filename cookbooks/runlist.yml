@@ -2,3 +2,4 @@
   run_list:
     - recipe[test]
     - recipe[tmux]
+    - recipe[redis2]
