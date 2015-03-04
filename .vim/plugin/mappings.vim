@@ -151,3 +151,7 @@ nnoremap <ScrollWheelDown> <c-i>
 nnoremap !! :tabe \| cfile tmp/rspec.vim \| copen<CR>
 
 noremap cc :set paste<cr>o
+
+" ^l redraws correctly. I think this is a incompatibility between my zsh
+" mapping and vim.
+map  <esc>:redraw!<cr>
