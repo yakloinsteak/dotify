@@ -5,6 +5,7 @@ set shiftwidth=2
 set smarttab
 set tabstop=2
 set autoindent
+set textwidth=100
 
 let g:rails_ctags_arguments='--exclude="*.js" --regex-Ruby="/\(named_scope\|has_many\|has_and_belongs_to_many\|belongs_to\)\ :\([A-z]\+\)\ *,/\\2/e" --exclude="*.sql" --exclude=.git --exclude=log --exclude=tmp --exclude=import --exclude=spec'
 let g:no_turbux_mappings = 1
