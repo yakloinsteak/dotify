@@ -17,6 +17,14 @@
 # limitations under the License.
 #
 
+=begin
+
+
+Commented out because this requires a newer version of chef. 11 I think.
+
+
+
+
 class Chef
   class Resource::XcodeCommandLineTools < Resource::LWRPBase
     def self.resource_name
@@ -209,3 +217,4 @@ class Chef
     end
   end
 end
+=end

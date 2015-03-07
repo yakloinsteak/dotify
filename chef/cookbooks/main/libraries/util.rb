@@ -1,7 +1,7 @@
 class Chef
   class Recipe
-    def workstation?
-      true
+    def gui_packages?
+      node[:gui_packages] || false
     end
   end
 end
