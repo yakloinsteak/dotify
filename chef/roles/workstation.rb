@@ -4,6 +4,7 @@ description "Workstation"
 
 run_list(
   "main",
+  'zsh'
   "tmux",
   "redis2",
   "aws-tools",
@@ -25,5 +26,16 @@ default_attributes({
         'rubies'       => ['ruby-2.0.0']
       }
     ]
-  }
+  },
+
+  'oh_my_zsh' => {
+    'users' => [
+      {
+        'login'   => 'blackman',
+        'theme'   => 'fox',
+        'plugins' => %w(git rails ruby gem vi-mode rvm cap rvm bundler rake rsync colorize tmux),
+        'home'    => '/home/blackman'
+      }
+    ]
+   }
 })
