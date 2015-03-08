@@ -1,5 +1,7 @@
 name "workstation"
+
 description "Workstation"
+
 run_list(
   "main",
   "tmux",

@@ -1,13 +1,25 @@
 require 'fileutils'
 require 'yaml'
 
+roles = Dir.
+  glob('roles/*.rb').
+  map{|x| x.split('/').last }.
+  map{|x| x.split('.').first }
+
+role = ""
+while !roles.include?(role) do
+  print "Enter a role (#{roles}): "
+  role = STDIN.gets
+  role.chomp!
+end
+
 path = File.realpath(File.dirname(__FILE__))
 
 #a = YAML.load_file(File.join(path, 'runlist.yml'))
 chef_secrets = YAML.load_file(File.join(path, 'chef_secrets.yml'))
 
 chef_secrets['run_list'] = [
-  'role[test]'
+  "role[#{role}]"
 ]
 
 File.write("#{path}/node.json", chef_secrets.to_json)
