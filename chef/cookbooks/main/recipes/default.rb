@@ -48,6 +48,6 @@ end
 
 apt_package 'ack-grep'
 
-link '/usr/bin/ack-grep' do
-  to '/usr/local/bin/ack'
+link '/usr/local/bin/ack' do
+  to '/usr/bin/ack-grep'
 end
