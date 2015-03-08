@@ -13,6 +13,6 @@ chef_secrets['run_list'] = [
 File.write("#{path}/node.json", chef_secrets.to_json)
 
 file_cache_path  "#{path}/.cache"
-cookbook_path    "#{path}"
+cookbook_path    "#{path}/cookbooks"
 json_attribs     "#{path}/node.json"
 role_path        "#{path}/roles"
