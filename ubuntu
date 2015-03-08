@@ -46,24 +46,20 @@ wget -O - https://www.hipchat.com/keys/hipchat-linux.key | apt-key add -
 apt-get update
 apt-get install hipchat
 
-#sudo apt-add-repository ppa:sharpie/for-science
-#sudo apt-add-repository ppa:sharpie/postgis-stable
-#sudo apt-add-repository ppa:ubuntugis/ubuntugis-unstable
-
 sudo apt-get update
 
 # Ubuntu only
-sudo apt-get install firefox coffeescript nodejs nodejs-dev ubuntu-restricted-extras libappindicator1 icedtea-7-plugin synergy quicksynergy gufw
-sudo apt-get install mpc wireshark mercurial cmake openjdk-7-jre pandoc
+#sudo apt-get install firefox coffeescript nodejs nodejs-dev ubuntu-restricted-extras libappindicator1 icedtea-7-plugin synergy quicksynergy gufw
+#sudo apt-get install mpc wireshark mercurial cmake openjdk-7-jre pandoc
 #sudo apt-get install caffeine
 
 # Crunchbang or Ubuntu
-sudo apt-get install ack-grep libv8-dev duply python3 thunar tint2 autocutsel automake awesome awesome-extra build-essential ccache chromium-browser exif exuberant-ctags gdal-bin gimp git gitg gksu gparted gthumb imagemagick iotop kcharselect keychain libboost-all-dev libcurl4-openssl-dev libevent-dev libgsasl7-dev liblapack-dev libpq-dev libproj-dev libqt4-core libqt4-gui libqtwebkit4 libreoffice libsasl2-dev libtool libxml2-dev libxslt-dev lsb-core monit mpd mysql-client mytop ncmpcpp netpbm network-manager-openvpn network-manager-openvpn-gnome openssl openvpn osmosis parcellite pgadmin3 pidgin postgis postgresql-client printer-driver-gutenprint pwgen python python-boto qt4-dev-tools ranger r-base rsync rubygems ruby-qt4-webkit s3cmd screen scrot sqlite3 sshfs terminator tmux traceroute vim vlock whois x11-xserver-utils xfce4-power-manager xsel zsh libgdbm-dev libffi-dev build-essential bison openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-0 libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev autoconf libc6-dev python-pip xdotool exiv2 vlc tsung ptop gtk-recordmydesktop virtualbox virtualbox-guest-additions-iso perceptualdiff paprefs xscreensaver xclip openssh-server irssi inkscape tig qrencode python-pygments osm2pgsql xscreensaver-gl pdftk silversearcher-ag
+#sudo apt-get install ack-grep libv8-dev duply python3 thunar tint2 autocutsel automake awesome awesome-extra build-essential ccache chromium-browser exif exuberant-ctags gdal-bin gimp git gitg gksu gparted gthumb imagemagick iotop kcharselect keychain libboost-all-dev libcurl4-openssl-dev libevent-dev libgsasl7-dev liblapack-dev libpq-dev libproj-dev libqt4-core libqt4-gui libqtwebkit4 libreoffice libsasl2-dev libtool libxml2-dev libxslt-dev lsb-core monit mpd mysql-client mytop ncmpcpp netpbm network-manager-openvpn network-manager-openvpn-gnome openssl openvpn osmosis parcellite pgadmin3 pidgin postgis postgresql-client printer-driver-gutenprint pwgen python python-boto qt4-dev-tools ranger r-base rsync rubygems ruby-qt4-webkit s3cmd screen scrot sqlite3 sshfs terminator tmux traceroute vim vlock whois x11-xserver-utils xfce4-power-manager xsel zsh libgdbm-dev libffi-dev build-essential bison openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-0 libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev autoconf libc6-dev python-pip xdotool exiv2 vlc tsung ptop gtk-recordmydesktop virtualbox virtualbox-guest-additions-iso perceptualdiff paprefs xscreensaver xclip openssh-server irssi inkscape tig qrencode python-pygments osm2pgsql xscreensaver-gl pdftk silversearcher-ag
 
 # Servers
-sudo apt-get install redis-server xserver-xephyr postgresql-9.3-postgis-2.1
+#sudo apt-get install redis-server xserver-xephyr postgresql-9.3-postgis-2.1
 
-sudo ln -s /usr/bin/ack-grep /usr/local/bin/ack
+#sudo ln -s /usr/bin/ack-grep /usr/local/bin/ack
 
 \curl -sSL https://get.rvm.io | bash -s stable --ruby
 

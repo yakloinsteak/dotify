@@ -2,7 +2,7 @@
 # ubuntu-restricted-extras
 
 always = %w(
-  ack-grep autoconf automake bison build-essential build-essential ccache cmake coffeescript curl
+  autoconf automake bison build-essential build-essential ccache cmake coffeescript curl
   duply exif exiv2 exuberant-ctags gdal-bin git git-core icedtea-7-plugin imagemagick iotop irssi
   keychain libappindicator1 libboost-all-dev libc6-dev libcurl4-openssl-dev libevent-dev libffi-dev
   libgdbm-dev libgsasl7-dev liblapack-dev libpq-dev libproj-dev libqt4-core libqt4-gui libqtwebkit4
@@ -42,4 +42,12 @@ execute "apt-get upgrade --yes"
 
 packages_to_install.each do |package_name|
   apt_package(package_name) { action(:install) }
+end
+
+## Potentially Move:
+
+apt_package 'ack-grep'
+
+link '/usr/bin/ack-grep' do
+  to '/usr/local/bin/ack'
 end
