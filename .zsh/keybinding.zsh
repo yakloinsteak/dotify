@@ -33,3 +33,7 @@ zle -N edit-command-line
 
 #bindkey '\ee' edit-command-line
 bindkey -M vicmd 'v' edit-command-line
+
+bindkey "^[[A" history-search-backward
+
+bindkey "^[[B" history-search-forward

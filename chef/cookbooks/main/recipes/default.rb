@@ -2,7 +2,7 @@
 # ubuntu-restricted-extras
 
 always = %w(
-  autoconf automake bison build-essential build-essential ccache cmake coffeescript curl
+  apt-file autoconf automake bison build-essential build-essential ccache cmake coffeescript curl
   duply exif exiv2 exuberant-ctags gdal-bin git git-core icedtea-7-plugin imagemagick iotop irssi
   keychain libappindicator1 libboost-all-dev libc6-dev libcurl4-openssl-dev libevent-dev libffi-dev
   libgdbm-dev libgsasl7-dev liblapack-dev libpq-dev libproj-dev libqt4-core libqt4-gui libqtwebkit4
