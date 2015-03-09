@@ -1,0 +1,11 @@
+function tmux-ops
+{
+  cd ~
+
+  tmux new-session -d -s Ops -n top
+  tmux new-window -t Ops:1 -n iotop
+  tmux new-window -t Ops:2 -n mytop
+
+  tmux select-window -t Ops:1
+  tmux attach-session -t Ops
+}

@@ -1,0 +1,42 @@
+#compdef generate
+
+
+   ## FIXME: this isn't done.
+
+   typeset -A opt_args
+   local context state line cmds ret=1
+
+   _arguments -s -S \
+     '--version[Show the Rails version number and quit.]' \
+     '--help[Show this help message and quit.]' \
+     '--pretend[Run but do not make any changes.]' \
+     '--force[Overwrite files that already exist.]' \
+     '--skip[Skip files that already exist.]' \
+     '--quiet[Suppress normal output.]' \
+     '--backtrace[Debugging: show backtrace on errors.]' \
+     '--git[]' \
+     '1: :->cmds' \
+     && return 0
+
+
+case $state in
+  cmds)
+    cmds=(
+      "integration_spec"
+      "rspec"
+      "rspec_controller"
+      "rspec_model:Make a model, specifying columns and datatypes if you want"
+      "rspec_scaffold:Make a controller, model, helper, rspec files, routing, etc."
+      "controller"
+      "helper"
+      "migration:database migration"
+      "observer"
+      "plugin"
+      "resource"
+      "session_migration"
+    )
+    _describe -t commands 'Rail generator' cmds && ret=0
+    ;;
+esac
+
+   return 1

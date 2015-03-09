@@ -12,10 +12,6 @@ ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="<%= @theme %>"
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
 # Set to this to use case-sensitive completion
 CASE_SENSITIVE="<%= @case_sensitive %>"
 
@@ -47,7 +43,9 @@ source ~/.zsh/post.zsh
 source ~/.zsh/keybinding.zsh
 source ~/.zsh/prompt.zsh
 source ~/.zsh/complete.zsh
-source ~/.zsh/autoloads.zsh
+
+autoload <%= @autoloads.join(' ') %>
+
 if [ -e ~/.zsh/secrets.zsh ] ; then
   source ~/.zsh/secrets.zsh
 fi
@@ -60,4 +58,4 @@ function chpwd {
 
 if [[ `uname` == 'Darwin' ]] ; then source ~/.zsh/mac_only.zsh ; else ; source ~/.zsh/linux_only.zsh ; fi
 
-#export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

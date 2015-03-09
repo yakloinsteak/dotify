@@ -1,0 +1,38 @@
+function tmux-sg
+{
+  BASE="$HOME/prj/sg"
+  cd $BASE
+  #bundle
+
+  if [ ! -e '/tmp/started_ts' ];
+  then
+    touch /tmp/started_ts
+  fi
+
+  PATH=/usr/local/bin:$PATH
+
+  tmux new-session -s sg -d
+
+  tmux rename-window -t sg:0 'spec'
+  tmux split-window -t sg:0 -v
+  tmux new-window -t sg:1 -n db
+  tmux new-window -t sg:2 -n http
+  tmux split-window -t sg:2 -v
+  tmux new-window -t sg:3 -n con
+  tmux new-window -t sg:4 -n vim
+  tmux new-window -t sg:5 -n zsh
+
+  sleep 1
+
+  tmux send-keys -t sg:0 "cd ${BASE}" C-m
+  tmux send-keys -t sg:0.0 "guard" C-m
+  tmux send-keys -t sg:0.1 "cucumber features" C-m
+  tmux send-keys -t sg:1 "bundle exec rails db" C-m
+  tmux send-keys -t sg:2.0 "bundle exec rails s -p 3000" C-m
+  tmux send-keys -t sg:2.1 "sidekiq" C-m
+  tmux send-keys -t sg:3 "bundle exec rails c" C-m
+  tmux send-keys -t sg:4 "vim --servername sg Gemfile" C-m
+
+  tmux select-window -t sg:5
+  tmux attach-session -t sg
+}

@@ -1,0 +1,25 @@
+function tmux-web
+{
+  BASE="$HOME/prj/web"
+  cd $BASE
+  bundle
+
+  tmux new-session -d -s Website -n spec
+  tmux new-window -t Website:10
+  tmux join-pane -s Website:10 -t Website:spec
+  tmux new-window -t Website:1 -n db
+  tmux new-window -t Website:2 -n http
+  tmux new-window -t Website:3 -n con
+  tmux new-window -t Website:4 -n vim
+  tmux new-window -t Website:5 -n zsh
+
+  tmux send-keys -t Website:0.0 "spork" C-m
+  tmux send-keys -t Website:0.1 "guard" C-m
+  tmux send-keys -t Website:1 "rails db -p" C-m
+  tmux send-keys -t Website:2 "unicorn -p 3000 | grep -v 'assets'" C-m
+  tmux send-keys -t Website:3 "rails p" C-m
+  tmux send-keys -t Website:4 "vim --servername web Gemfile" C-m
+
+  tmux select-window -t Website:5
+  tmux attach-session -t Website
+}

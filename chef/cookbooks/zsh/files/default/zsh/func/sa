@@ -1,0 +1,8 @@
+# Add key to ssh agent.  Keep it shorter on desktop systems.
+function sa() {
+  if [[ `hostname` -eq "somedesktop" ]]; then
+    ssh-add -t "9h" ~/.ssh/id_dsa ~/.ssh/id_rsa
+  else
+    ssh-add -t "9h" ~/.ssh/id_dsa ~/.ssh/id_rsa
+  fi
+}

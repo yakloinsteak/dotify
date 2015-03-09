@@ -1,0 +1,40 @@
+function tmux-ns3
+{
+  BASE="$HOME/prj/ns3"
+  cd $BASE
+  #bundle
+
+  if [ ! -e '/tmp/started_ns3' ];
+  then
+    touch /tmp/started_ns3
+  fi
+
+  PATH=/usr/local/bin:$PATH
+
+  tmux new-session -s ns3 -d
+
+  tmux rename-window -t ns3:0 'spec'
+  tmux new-window -t ns3:1 -n db
+
+  tmux new-window -t ns3:2 -n http
+  tmux split-window -h -t ns3:2 -p 65
+
+  tmux new-window -t ns3:3 -n con
+  tmux new-window -t ns3:4 -n vim
+  tmux new-window -t ns3:5 -n zsh
+
+  sleep 1
+
+  tmux send-keys -t ns3:0 "cd ${BASE}" C-m
+  tmux send-keys -t ns3:0 "guard" C-m
+  tmux send-keys -t ns3:1 "bundle exec rails db" C-m
+
+  tmux send-keys -t ns3:2.0 "unicorn -c config/unicorn.rb" C-m
+  tmux send-keys -t ns3:2.1 "bundle exec rake log:clear && tail -f log/development.log" C-m
+
+  tmux send-keys -t ns3:3 "bundle exec rails c" C-m
+  tmux send-keys -t ns3:4 "vim --servername ns3 Gemfile" C-m
+
+  tmux select-window -t ns3:5
+  tmux attach-session -t ns3
+}

@@ -1,0 +1,4 @@
+function d0
+{
+  export DISPLAY=:0
+}
