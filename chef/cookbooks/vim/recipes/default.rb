@@ -18,20 +18,20 @@ remote_directory "#{node['homedir']}/.vim" do
   files_group node['username']
   group node['group']
   owner node['username']
-  action :create #_if_missing
+  action :create_if_missing
 end
 
-directory "#{node['homedir']}/.vim/bundle" do
-  recursive true
-  group node['group']
-  owner node['username']
-end
+#directory "#{node['homedir']}/.vim/bundle" do
+#  recursive true
+#  group node['group']
+#  owner node['username']
+#end
 
 vim_modules = {
   "AutoFenc"          => 'https://github.com/vim-scripts/AutoFenc.vim.git',
   "ack"               => 'https://github.com/mileszs/ack.vim.git',
   "bundler"           => 'git://github.com/tpope/vim-bundler.git',
-  "colorschemes"      => 'git@github.com:flazz/vim-colorschemes.git',
+  "colorschemes"      => 'https://github.com/flazz/vim-colorschemes.git',
   "conflict-motions"  => 'https://github.com/vim-scripts/ConflictMotions.git',
   "ctrlp"             => 'https://github.com/kien/ctrlp.vim.git',
   "easy_motion"       => 'https://github.com/Lokaltog/vim-easymotion.git',
@@ -74,10 +74,13 @@ vim_modules.each do |name,repo|
   end
 end
 
-# Vim completion
 apt_package 'cmake'
-#cd ~/.vim/bundle/YouCompleteMe
+
+execute "Compile YouCompleteMe" do
+  command "cd #{node['homedir']}/.vim/bundle/you-complete-me && ./install.sh --clang-completer"
+  #not_if { system
+end
+
 #git submodule --init --recursive
-#./install.sh --clang-completer
 
 # Leverage server if available and env var set

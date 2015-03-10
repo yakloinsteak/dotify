@@ -4,7 +4,7 @@ description "Workstation"
 
 run_list(
   "main",
-  'zsh'
+  'zsh',
   "tmux",
   "redis2",
   "aws-tools",
