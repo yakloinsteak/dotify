@@ -1,0 +1,10 @@
+snippet auth "Authenticat with a token" !b
+# Header must have 'Authorization: Token token="xyz"' during request
+authenticate_or_request_with_http_token do |token, options|
+  ${1:method_to_authenticate_token} token
+end
+endsnippet
+
+snippet head "Send empty response" !b
+head :unauthorized
+endsnippet

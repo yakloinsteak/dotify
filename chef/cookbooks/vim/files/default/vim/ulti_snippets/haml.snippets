@@ -1,0 +1,56 @@
+snippet ul
+%ul
+  %li ${1:listitem1}
+endsnippet
+
+snippet li
+%li ${1:listitem}
+endsnippet
+
+snippet list
+- list_of(${1:enum}, {}) { |item| ${2} }
+endsnippet
+
+snippet ff
+- form_for ${1:what}, {:url ${2:url}} do |f|
+endsnippet
+
+snippet cb "regular"
+- check_box_tag ${1:name}, ${2:value_1}, ${3:checked}, ${4:options_hash}
+endsnippet
+
+snippet cb "form helper"
+ f.check_box ${1:method}, ${2:options_hash}, ${3:checked_value_1}, ${4:unchecked_value_0)}
+endsnippet
+
+snippet sel "array"
+= f.select ${1:method}, ${2:options_array}, {:include_blank => true}
+endsnippet
+
+snippet sel "collecion"
+= f.collection_select ${1:method}, ${2:collection}, ${3:id_or_code_method}, ${4:name_to_display_method}, {}
+endsnippet
+
+snippet html "fieldset"
+%fieldset
+  ${1}
+endsnippet
+
+snippet wh
+= surround '${1}', '${2}' do
+  ${3}
+endsnippet
+
+snippet wh+
+= precede '${1:precede_text}' do
+  ${2}
+endsnippet
+
+snippet wh-
+= succeed '${1:.}' do
+  ${2}
+endsnippet
+
+snippet pc
+%div{:class => page_class} ${1}
+endsnippet

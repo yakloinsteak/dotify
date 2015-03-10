@@ -1,20 +1,12 @@
 # Cookbook Name:: zsh with oh-my-zsh
 # Recipe:: default
 
-require 'pathname'
-
 if node['oh_my_zsh']['users'].any?
   package "zsh"
   include_recipe "git"
 end
 
 autoloaded_functions = %w(d0 sa tmux-ard tmux-ops tmuxcolors track)
-#  Pathname.
-#  new(__FILE__).
-#  parent.
-#  join('files', 'default', 'zsh', 'func').
-#  children.
-#  map{|x| x.basename.to_s }
 
 # for each listed user
 node['oh_my_zsh']['users'].each do |user_hash|
@@ -35,7 +27,7 @@ node['oh_my_zsh']['users'].each do |user_hash|
     source "zshrc.erb"
     owner user_hash[:login]
     mode "644"
-    action :create
+    action :create_if_missing
     variables({
       :user => user_hash[:login],
       :theme => user_hash[:theme] || 'robbyrussell',

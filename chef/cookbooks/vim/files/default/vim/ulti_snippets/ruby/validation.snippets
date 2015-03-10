@@ -1,0 +1,36 @@
+## Validations in Rails
+
+snippet val "all" b
+validates ${1:item}, :numericality => true, :length => { :within => 1..100 }, :numericality => true, :presence => true, :uniqueness => true
+endsnippet
+
+snippet val "length"
+validates_length_of ${1:item}, maximum: ${2:max}, minimum: ${3:min}, is: ${4:exact_value}, within: ${5:range}
+endsnippet
+
+snippet val "numericality"
+validates_numericality_of ${1:item}, only_integer: ${2:boolean}, equal_to: ${3:value1}, greater_than: ${4:value2}, greater_than_or_equal_to: ${5:value3}, less_than: ${6:value4}, less_than_or_equal_to: ${7:value5}, :numericality => true
+endsnippet
+
+snippet val "presence"
+validates ${1:item}, :presence => true
+endsnippet
+
+snippet val "unique"
+validates_uniqueness_of  ${1:item}, scope: ${2:scope}
+endsnippet
+
+snippet val "cusomizable" b
+validate ${1:method_name}
+
+def ${1}
+  errors.add(\:${3:error_name}, "${3:error_text}"
+  errors[:base] << "${3}"
+end
+endsnippet
+
+snippet val "each" b
+validates_each ${1:items_with_comas} do |record, attr, value|
+  record.errors.add(attr, '${2:message}') if ${3:condition}
+end
+endsnippet
