@@ -76,11 +76,14 @@ end
 
 apt_package 'cmake'
 
+execute "Sync submodules for YouCompleteMe" do
+  command "cd #{node['homedir']}/.vim/bundle/you-complete-me && git submodule init && git submodule update --recursive"
+end
+
 execute "Compile YouCompleteMe" do
   command "cd #{node['homedir']}/.vim/bundle/you-complete-me && ./install.sh --clang-completer"
   #not_if { system
 end
 
-#git submodule --init --recursive
 
 # Leverage server if available and env var set
