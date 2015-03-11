@@ -88,4 +88,12 @@ execute "Compile YouCompleteMe" do
   #not_if { system
 end
 
-# Leverage server if available and env var set
+#TODO:completion with eclim
+#mkdir -p ~/tools
+#cd ~/tools
+#wget http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/luna/SR1a/eclipse-java-luna-SR1a-linux-gtk-x86_64.tar.gz&mirror_id=337
+#tar -zxvf eclipse-java-luna-SR1a-linux-gtk-x86_64.tar.gz
+#wget http://downloads.sourceforge.net/project/eclim/eclim/2.4.1/eclim_2.4.1.jar?r=http%3A%2F%2Feclim.org%2Finstall.html&ts=1422211131&use_mirror=tcpdiag
+#java -jar eclim_2.4.1.jar
+
+# TODO: Leverage server if available and env var set

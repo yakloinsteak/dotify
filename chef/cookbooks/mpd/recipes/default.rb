@@ -4,7 +4,6 @@ end
 
 template "/etc/mpd.conf" do
   source "mpd_confg.erb"
-  #owner user_hash[:login]
   mode "644"
   action :create #_if_missing
   variables({
@@ -13,7 +12,25 @@ template "/etc/mpd.conf" do
   })
 end
 
-directory "#{node['homedir']}/.mpd" do
+directory "#{node['homedir']}/.ncmpcpp" do
   owner node['username']
   group node['group']
+end
+
+template "#{node['homedir']}/.ncmpcpp/config" do
+  source 'config.erb'
+  owner node['username']
+  group node['group']
+  variables({
+     :basedir => node['homedir'],
+     :username => node['username']
+  })
+end
+
+%w(pulse pulse-access).each do |group_name|
+  group group_name do
+    action :modify
+    members node['username']
+    append true
+  end
 end

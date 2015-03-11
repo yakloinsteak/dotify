@@ -19,10 +19,10 @@ ln -nsf .dotify/.config/Thunar .config/Thunar
 # fonts in ~/.config
 
 # Vim completion
-cd ~/.vim/bundle/YouCompleteMe
-sudo apt-get install cmake
-git submodule --init --recursive
-./install.sh --clang-completer
+#cd ~/.vim/bundle/YouCompleteMe
+#sudo apt-get install cmake
+#git submodule --init --recursive
+#./install.sh --clang-completer
 
 echo "sudo vi /etc/slim.conf to add awesome to the line matching ^sessions on crunchbang"
 
@@ -61,16 +61,16 @@ sudo apt-get update
 
 #sudo ln -s /usr/bin/ack-grep /usr/local/bin/ack
 
-\curl -sSL https://get.rvm.io | bash -s stable --ruby
+#\curl -sSL https://get.rvm.io | bash -s stable --ruby
 
 # Not sure why these don't install
 #sudo apt-get install pgbadger ck-grep
 
 # Audio (pulse)
-sudo cp mpd.conf /etc
+#sudo cp mpd.conf /etc
 
 # Might be needed
-sudo usermod -aG pulse-access,pulse blackman
+#sudo usermod -aG pulse-access,pulse blackman
 
 # Git repos
 mkdir -p ~/prj

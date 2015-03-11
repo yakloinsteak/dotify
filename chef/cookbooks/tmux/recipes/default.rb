@@ -1,14 +1,8 @@
-apt_package 'tmux' do
-  action :install
-end
-
-apt_package 'xclip' do
-  action :install
-end
+apt_package 'tmux'
+apt_package 'xclip'
 
 cookbook_file "#{node['homedir']}/.tmux.conf" do
   backup 1
-  manage_symlink_source true
   owner node['username']
   group node['group']
   mode 0644
@@ -17,7 +11,6 @@ end
 
 cookbook_file "#{node['homedir']}/.tmux_colors.sh" do
   backup 1
-  manage_symlink_source true
   owner node['username']
   group node['group']
   mode 0644
@@ -26,7 +19,6 @@ end
 
 cookbook_file "#{node['homedir']}/.tmux_ips.sh" do
   backup 1
-  manage_symlink_source true
   owner node['username']
   group node['group']
   mode 0644
