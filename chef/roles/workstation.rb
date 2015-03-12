@@ -4,6 +4,7 @@ description "Workstation"
 
 run_list(
   "main",
+  "main::dotfiles",
   'zsh',
   "tmux",
   "aws-tools",

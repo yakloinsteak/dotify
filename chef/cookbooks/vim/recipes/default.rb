@@ -16,19 +16,10 @@ end
 # .vim
 remote_directory "#{node['homedir']}/.vim" do
   source 'vim'
-  files_owner node['username']
-  files_mode "644"
-  files_group node['username']
-  group node['group']
-  owner node['username']
   action :create_if_missing
 end
 
-#directory "#{node['homedir']}/.vim/bundle" do
-#  recursive true
-#  group node['group']
-#  owner node['username']
-#end
+execute "chown #{node['username']}:#{node['group']} -R #{node['homedir']}/.vim"
 
 vim_modules = {
   "AutoFenc"          => 'https://github.com/vim-scripts/AutoFenc.vim.git',
@@ -38,33 +29,33 @@ vim_modules = {
   "conflict-motions"  => 'https://github.com/vim-scripts/ConflictMotions.git',
   "ctrlp"             => 'https://github.com/kien/ctrlp.vim.git',
   "easy_motion"       => 'https://github.com/Lokaltog/vim-easymotion.git',
-  "eunuch"            => 'git@github.com:tpope/vim-eunuch.git',
+  "eunuch"            => 'https://github.com/tpope/vim-eunuch.git',
   "fakeclip"          => 'http://github.com/kana/vim-fakeclip.git',
   "gnupg"             => 'https://github.com/vim-scripts/gnupg.vim.git',
-  "haml"              => 'git@github.com:tpope/vim-haml.git',
-  "html5"             => 'git@github.com:othree/html5.vim.git',
+  "haml"              => 'https://github.com/tpope/vim-haml.git',
+  "html5"             => 'https://github.com/othree/html5.vim.git',
   "indent-object"     => 'https://github.com/michaeljsmith/vim-indent-object.git',
-  "join"              => 'git@github.com:sk1418/Join.git',
+  "join"              => 'https://github.com/sk1418/Join.git',
   "linediff"          => 'https://github.com/AndrewRadev/linediff.vim.git',
-  "markdown"          => 'git@github.com:tpope/vim-markdown.git',
+  "markdown"          => 'https://github.com/tpope/vim-markdown.git',
   "monit"             => 'https://github.com/tmatilai/vim-monit.git',
   "nerdtree"          => 'https://github.com/scrooloose/nerdtree.git',
-  "nginx-syntax"      => 'git@github.com:evanmiller/nginx-vim-syntax.git',
+  "nginx-syntax"      => 'https://github.com/evanmiller/nginx-vim-syntax.git',
   "rails"             => 'git://github.com/tpope/vim-rails.git',
-  "rubocop"           => 'git@github.com:lad/vim-rubocop.git',
+  "rubocop"           => 'https://github.com/lad/vim-rubocop.git',
   "ruby-doc"          => 'git://github.com/lucapette/vim-ruby-doc.git',
-  "scratch"           => 'git@github.com:vim-scripts/scratch.vim.git',
-  "slim"              => 'git@github.com:slim-template/vim-slim.git',
-  "slime"             => 'git@github.com:jpalardy/vim-slime.git',
-  "syntastic"         => 'git@github.com:scrooloose/syntastic.git',
-  "tagbar"            => 'git@github.com:majutsushi/tagbar.git',
+  "scratch"           => 'https://github.com/vim-scripts/scratch.vim.git',
+  "slim"              => 'https://github.com/slim-template/vim-slim.git',
+  "slime"             => 'https://github.com/jpalardy/vim-slime.git',
+  "syntastic"         => 'https://github.com/scrooloose/syntastic.git',
+  "tagbar"            => 'https://github.com/majutsushi/tagbar.git',
   "textobj-rubyblock" => 'https://github.com/nelstrom/vim-textobj-rubyblock.git',
   "textobj-user"      => 'git://github.com/kana/vim-textobj-user.git',
   "ultisnips"         => 'https://github.com/SirVer/ultisnips',
   "cucumber"          => 'https://github.com/tpope/vim-cucumber.git',
-  "vinegar"           => 'git@github.com:tpope/vim-vinegar.git',
+  "vinegar"           => 'https://github.com/tpope/vim-vinegar.git',
   "yankring"          => 'https://github.com/vim-scripts/YankRing.vim.git',
-  "you-complete-me"   => 'git@github.com:Valloric/YouCompleteMe.git'
+  "you-complete-me"   => 'https://github.com/Valloric/YouCompleteMe.git'
 }
 
 vim_modules.each do |name,repo|

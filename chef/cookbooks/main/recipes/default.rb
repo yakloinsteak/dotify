@@ -41,7 +41,11 @@ execute "apt-get update"
 execute "apt-get upgrade --yes"
 
 packages_to_install.each do |package_name|
-  apt_package(package_name) { action(:install) }
+  apt_package(package_name) do
+    action :install
+    retry 2
+    retry_delay 5
+   end
 end
 
 ## Potentially Move:
