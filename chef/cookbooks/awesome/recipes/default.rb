@@ -1,4 +1,28 @@
-%w( awesome awesome-extra xserver-xephyr).each do |package_name|
+#execute 'aptitude update'
+# Refactor Xorg into its own recipe
+
+apt_package 'lightdm'
+#apt_package 'openbox'
+#apt_package 'xserver-xorg-video-all'
+#apt_package 'terminator'
+apt_package 'ubuntu-desktop'
+
+template '/etc/lightdm/lightdm.conf' do
+  source 'lightdm_conf.erb'
+  variables({
+    :username =>  node['username'],
+    :default_manager => 'awesome'
+  })
+end
+
+#service 'lightdm' do
+#  action :restart
+#end
+
+
+
+
+%w( awesome awesome-extra xserver-xephyr pam-kwallet ).each do |package_name|
   apt_package package_name
 end
 
@@ -11,4 +35,3 @@ remote_directory "#{node['homedir']}/.config/awesome" do
   owner node['username']
   action :create #_if_missing
 end
-

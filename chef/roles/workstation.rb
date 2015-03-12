@@ -6,10 +6,12 @@ run_list(
   "main",
   'zsh',
   "tmux",
-  "redis2",
   "aws-tools",
   "vim",
-  "rvm::user"
+  "rvm::user",
+  "heroku",
+  "redis2",
+  "mpd"
 )
 
 default_attributes({
@@ -23,7 +25,7 @@ default_attributes({
         'version'      => 'head',
         'branch'       => 'stable',
         'default_ruby' => 'ruby-2.0.0',
-        'rubies'       => ['ruby-2.0.0']
+        'rubies'       => ['ruby-2.0.0', 'ruby-1.9.3', 'ruby-2.2.0', 'ruby-2.1.5']
       }
     ]
   },

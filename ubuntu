@@ -136,7 +136,6 @@ echo "Run chsh to change to zsh"
 
 echo "run paprefs and enable everything. Then reboot"
 
-
 # eclim: using eclipse and eclim for semantic completions.
 # Needs jdk 1.7+ and vim 7.1+ already installed. Need eclipse 4.4.x (luna)
 mkdir -p ~/tools

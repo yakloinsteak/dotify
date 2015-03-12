@@ -1,0 +1,6 @@
+eval require 'ruby-debug/completion'
+eval load '/home/blackman/.irbrc'
+set autolist
+set autoeval
+set autoreload
+set basename

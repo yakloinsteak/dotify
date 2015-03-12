@@ -1,0 +1,9 @@
+" Hide everything, but right scroll bar and numbers in tabs, and statusbar
+set go=rnsBmT
+
+highlight Hint color:red;background-color:yellow;border-width:1px;border-color:black;font-size:13px;
+highlight -a Hint text-transform: uppercase;
+highlight Hint::after content: attr(number) !important;
+
+set hintkeys="ajskdlfgh"
+set showtabline=never
