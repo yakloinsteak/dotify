@@ -2,28 +2,89 @@
 
 require 'shellwords'
 require 'fileutils'
+require 'optparse'
+require 'ostruct'
 
-phone_path    = '/media/blackman'
-playlist_name = 'ipod.m3u'
-playlist_src  = "/home/blackman/.mpd/playlists/#{playlist_name}"
-playlist_dest = "#{phone_path}/Playlists/#{playlist_name}"
-ipod = true
+class OptparseExample
+  def self.parse(args)
+    options = OpenStruct.new
+    username = `whoami`.chomp
+    options.phone_path = "/media/#{username}/NO LABEL"
+    options.playlist_name = 'ipod.m3u'
+    options.playlist_src  = lambda { "/home/blackman/.mpd/playlists/#{options.playlist_name}" }
+    options.playlist_dest = lambda { "#{options.phone_path}/Playlists/#{options.playlist_name}" }
+    options.ipod = false
+    options.testrun = false
+    options.verbose = false
 
-system("rm -rf #{phone_path}/Music/*")
+    opt_parser = OptionParser.new do |opts|
+      opts.banner = "Usage: sync_music [options]"
 
-`cat #{playlist_src}`.split(/\n/).each do |file|
+      opts.separator ""
+      opts.separator "Specific options:"
+
+      opts.on("-d", "--destination [path to dest]", "set destination to copy to") do |dest|
+        options.phone_path = dest
+      end
+
+      opts.on("-n", "--name [name with m3u]", "set playlist to copy") do |name|
+        options.playlist_name = name
+        #options.playlist_src  = "/home/blackman/.mpd/playlists/#{name}"
+        #options.playlist_dest = "#{options.phone_path}/Playlists/#{name}"
+      end
+
+      opts.on("-i", "--[no-]ipod", "iPOD at destination?") do |ipod|
+        options.ipod = ipod
+      end
+
+      opts.on("-t", "--[no-]testrun", "test run without copying") do |testrun|
+        options.testrun = testrun
+      end
+
+      opts.on("-v", "--[no-]verbose", "verbose output") do |verbose|
+        options.verbose = verbose
+      end
+
+      opts.separator ""
+      opts.separator "Common options:"
+
+      # No argument, shows at tail.  This will print an options summary.
+      opts.on_tail("-h", "--help", "Show this message") do
+        puts opts
+        exit
+      end
+    end
+
+    opt_parser.parse!(args)
+    options
+  end
+end
+
+o = OptparseExample.parse(ARGV)
+
+puts "JUST TESTING..." if o.testrun
+
+system("rm -rf #{o.phone_path}/Music/*") unless o.testrun
+
+`cat #{o.playlist_src.call}`.split(/\n/).each do |file|
   relative_dir = File.dirname(file)
   source_dir =  "/home/blackman/Music/#{relative_dir}"
   source_file = Shellwords.escape File.join("/home/blackman/Music", file)
-  destination_dir = Shellwords.escape("#{phone_path}/Music/#{relative_dir}".gsub(%r{\\}, ''))
+  destination_dir = Shellwords.escape("#{o.phone_path}/Music/#{relative_dir}".gsub(%r{\\}, ''))
 
   cmds = [%<mkdir -p #{destination_dir}>]
   cmds << %<rsync --inplace #{source_file} #{destination_dir}>
 
-  puts cmds.join(" && ")
-  system cmds.join(" && ")
+  if o.verbose
+    puts cmds.join(" && ")
+  else
+    print "."
+  end
+  system(cmds.join(" && ")) unless o.testrun
 end
 
-if ipod
-  system("cat #{playlist_src} | sed -e 's/^/\\/Music\\//' | sed -e 's/\\\\//' > #{playlist_dest}")
+puts "\nDONE"
+
+if o.ipod
+  system("cat #{o.playlist_src.call} | sed -e 's/^/\\/Music\\//' | sed -e 's/\\\\//' > #{o.playlist_dest.call}")
 end
