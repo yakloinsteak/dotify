@@ -47,13 +47,8 @@ export VIM_SERVER=red
 export CUCUMBER_FORMAT=progress
 export FAST=true
 
-# Oracle Java
-export JAVA_HOME=/usr/local/java/jdk1.8.0_20
+export JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64/jre"
 export PATH=$PATH:$HOME/bin:$JAVA_HOME/bin
-export JRE_HOME=/usr/local/java/jdk1.8.0_20/jre
-export PATH=$PATH:$HOME/bin:$JRE_HOME/bin
-
-export NS3_PORT=4000
 
 export EC2_HOME=/usr/local/ec2/`ls /usr/local/ec2`
 export PATH=$PATH:$EC2_HOME/bin

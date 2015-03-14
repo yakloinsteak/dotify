@@ -72,17 +72,20 @@ apt_package 'cmake'
 
 execute "Sync submodules for YouCompleteMe" do
   command "cd #{node['homedir']}/.vim/bundle/you-complete-me && git submodule init && git submodule update --init --recursive"
+  not_if { File.exists? "#{node['homedir']}/.vim/bundle/you-complete-me/third_party/ycmd" }
 end
 
 execute "Compile YouCompleteMe" do
   command "cd #{node['homedir']}/.vim/bundle/you-complete-me && ./install.sh --clang-completer"
-  #not_if { system
+  not_if { File.exists? "#{node['homedir']}/.vim/bundle/you-complete-me/third_party/ycmd" }
 end
 
 #TODO:completion with eclim
-#mkdir -p ~/tools
-#cd ~/tools
-#wget http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/luna/SR1a/eclipse-java-luna-SR1a-linux-gtk-x86_64.tar.gz&mirror_id=337
+directory "#{node['homedir']}/tools"
+execute 'Get eclipse for eclim/vim usage' do
+   command 'cd /usr/local/src && wget \'http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/luna/SR1a/eclipse-java-luna-SR1a-linux-gtk-x86_64.tar.gz&mirror_id=337\''
+   not_if  { File.exists? '/usr/local/src/eclipse-java-luna-SR1a-linux-gtk-x86_64.tar.gz' }
+end
 #tar -zxvf eclipse-java-luna-SR1a-linux-gtk-x86_64.tar.gz
 #wget http://downloads.sourceforge.net/project/eclim/eclim/2.4.1/eclim_2.4.1.jar?r=http%3A%2F%2Feclim.org%2Finstall.html&ts=1422211131&use_mirror=tcpdiag
 #java -jar eclim_2.4.1.jar

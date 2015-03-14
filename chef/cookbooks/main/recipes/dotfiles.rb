@@ -1,5 +1,5 @@
 dotfiles = %w(
-  ackrc asoundrc bashrc byebugrc caprc csshrc dotrc editrc gvimrc hoerc inputrc irbrc pentadactylrc
+  asoundrc bashrc byebugrc caprc csshrc dotrc editrc gvimrc hoerc inputrc irbrc pentadactylrc
   pryrc psqlrc rdebugrc screenrc xinitrc
 )
 

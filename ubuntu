@@ -1,7 +1,7 @@
 # cd $HOME
 # git clone giturl .dotify
 
-sudo apt-get install git
+#sudo apt-get install git
 
 # Sync up modules
 cd ~/.dotify
@@ -13,7 +13,7 @@ git submodule update
 cd $HOME
 ln -nsf .dotify/* .
 ln -nsf .dotify/.* .
-ln -nsf .dotify/.config/awesome .config/awesome
+#ln -nsf .dotify/.config/awesome .config/awesome
 ln -nsf .dotify/.config/tint2 .config/tint2
 ln -nsf .dotify/.config/Thunar .config/Thunar
 # fonts in ~/.config
@@ -75,10 +75,10 @@ sudo apt-get update
 # Git repos
 mkdir -p ~/prj
 cd ~/prj
-git clone git@github.com:LocationInc/SecurityGauge.git sg
-git clone git@github.com:LocationInc/NeighborhoodScout.git ns3
-git clone git@github.com:LocationInc/LocationInc.com.git loc
-git clone git@github.com:LocationInc/NSR.git nsr
+#git clone git@github.com:LocationInc/SecurityGauge.git sg
+#git clone git@github.com:LocationInc/NeighborhoodScout.git ns3
+#git clone git@github.com:LocationInc/LocationInc.com.git loc
+#git clone git@github.com:LocationInc/NSR.git nsr
 cd ..
 
 mkdir ~/screenshots
@@ -132,7 +132,8 @@ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/
 
 echo "Sound clients:"
 echo 'list-clients' | pacmd
-echo "Run chsh to change to zsh"
+
+#echo "Run chsh to change to zsh"
 
 echo "run paprefs and enable everything. Then reboot"
 
@@ -145,11 +146,10 @@ tar -zxvf eclipse-java-luna-SR1a-linux-gtk-x86_64.tar.gz
 wget http://downloads.sourceforge.net/project/eclim/eclim/2.4.1/eclim_2.4.1.jar?r=http%3A%2F%2Feclim.org%2Finstall.html&ts=1422211131&use_mirror=tcpdiag
 java -jar eclim_2.4.1.jar
 
-
 # AWS Tools
-curl -O http://s3.amazonaws.com/ec2-downloads/ec2-api-tools.zip
-sudo mkdir /usr/local/ec2
-sudo unzip ec2-api-tools.zip -d /usr/local/ec2
+#curl -O http://s3.amazonaws.com/ec2-downloads/ec2-api-tools.zip
+#sudo mkdir /usr/local/ec2
+#sudo unzip ec2-api-tools.zip -d /usr/local/ec2
 
 # Heroku
-wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+#wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
