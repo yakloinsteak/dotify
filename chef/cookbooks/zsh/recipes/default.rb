@@ -20,6 +20,8 @@ node['oh_my_zsh']['users'].each do |user_hash|
     repository node['oh_my_zsh'][:repository]
     user user_hash[:login]
     reference "master"
+    retries 2
+    retry_delay 5
     action :sync
   end
 

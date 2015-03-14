@@ -2,6 +2,7 @@
 # ubuntu-restricted-extras
 
 always = %w(
+  python-magic
   apt-file autoconf automake bison build-essential build-essential ccache cmake coffeescript curl
   duply exif exiv2 gdal-bin git git-core icedtea-7-plugin imagemagick iotop irssi
   keychain libappindicator1 libboost-all-dev libc6-dev libcurl4-openssl-dev libevent-dev libffi-dev
@@ -11,7 +12,7 @@ always = %w(
   mysql-client mytop netpbm network-manager-openvpn nodejs nodejs-dev openjdk-7-jre openssh-server
   openssl openvpn pandoc pdftk perceptualdiff postgresql-client ptop pwgen python python-boto
   python-pip python-pygments python3 qrencode qt4-dev-tools r-base ranger rsync ruby-qt4-webkit ruby
-  s3cmd screen silversearcher-ag sqlite3 sshfs tig tint2 traceroute tsung vim vlock whois wireshark
+  s3cmd screen sqlite3 sshfs tig tint2 traceroute tsung vim vlock whois wireshark
   zlib1g zlib1g-dev zsh
 )
 
@@ -43,15 +44,7 @@ execute "apt-get upgrade --yes"
 packages_to_install.each do |package_name|
   apt_package(package_name) do
     action :install
-    retry 2
+    retries 2
     retry_delay 5
    end
-end
-
-## Potentially Move:
-
-apt_package 'ack-grep'
-
-link '/usr/local/bin/ack' do
-  to '/usr/bin/ack-grep'
 end
