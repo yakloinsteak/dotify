@@ -20,8 +20,6 @@ end
 #end
 
 
-
-
 %w( awesome awesome-extra xserver-xephyr pam-kwallet ).each do |package_name|
   apt_package package_name
 end

@@ -10,8 +10,8 @@ always = %w(
   libv8-dev libxml2-dev libxml2-dev libxslt-dev libxslt1-dev libyaml-dev lsb-core mercurial monit
   mysql-client mytop netpbm network-manager-openvpn nodejs nodejs-dev openjdk-7-jre openssh-server
   openssl openvpn pandoc pdftk perceptualdiff postgresql-client ptop pwgen python python-boto
-  python-magic python-pip python-pygments python3 qrencode qt4-dev-tools r-base ranger rsync
-  ruby-qt4-webkit ruby s3cmd screen sqlite3 sshfs tig tint2 traceroute tsung vim vlock whois
+  python-magic python-pip python-pygments python3 qrencode r-base ranger rsync
+  ruby s3cmd screen sqlite3 sshfs tig tint2 traceroute tsung vim vlock whois
   wireshark zlib1g zlib1g-dev zsh
 )
 
