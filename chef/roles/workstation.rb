@@ -3,9 +3,11 @@ name "workstation"
 description "Workstation"
 
 run_list(
-  "main",
+  "main::packages",
   "main::dotfiles",
+  'ack',
   'zsh',
+  'git::blackman',
   "tmux",
   "aws-tools",
   "vim",
@@ -16,9 +18,10 @@ run_list(
 )
 
 default_attributes({
-  'homedir'  => '/home/blackman',
-  'group'    => 'blackman',
-  'username' => 'blackman',
+  'homedir'   => '/home/blackman',
+  'group'     => 'blackman',
+  'username'  => 'blackman',
+  'full_name' =>  'Todd Blackman',
   'rvm' => {
     'user_installs' => [
       {

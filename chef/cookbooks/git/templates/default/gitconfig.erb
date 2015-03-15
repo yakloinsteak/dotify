@@ -1,0 +1,68 @@
+[user]
+  name = <%= @full_name %>
+  email = <%= @email %>
+[core]
+  pager = less -FRSX
+  editor = vim
+  excludesfile = <%= @homedir  %>/.gitignore
+  whitespace = trailing-space,space-before-tab
+[help]
+  autocorrect = 1
+[merge]
+  tool = vimdiff
+  keepBackup = false
+[color]
+  ui = true
+  pager = true
+  branch = true
+  status = true
+  diff = true
+[color "diff"]
+  meta = yellow
+  frag = cyan
+  old = red
+  new = green
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = red
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+[commit]
+  template = <%= @homedir %>/.gitmessage
+[alias]
+  pr     = remote prune origin
+  st     = status -s
+  ci     = commit
+  co     = checkout
+  br     = branch -v -v
+  dw     = diff -w
+  mr     = merge --no-ff
+  df     = diff -w --stat=160,80
+  added  = diff -w --stat=160,80 --diff-filter=A
+  modified = diff -w --stat=160,80 --diff-filter=M
+  dh     = diff HEAD~1
+  lg     = log --first-parent --pretty=format:'%C(red)%h%Creset %C(yellow)%d%Creset %s %Cgreen(%an)%Creset %Cblue[%ar]' --graph HEAD
+  hist   = log --pretty=format:'%C(red)%h%Creset %C(yellow)%d%Creset %s %Cgreen(%an)%Creset %Cblue[%ar]' --graph HEAD
+  rdev   = rebase dev
+  pom    = push origin master
+  wc     = whatchanged -p --abbrev-commit --pretty=medium
+  ch     = cherry -v dev master
+  backup = push --all --force mine
+[diff]
+  ignore-all-space = true
+[apply]
+  whitespace = fix
+[pager]
+  diff =
+[diff "jpg"]
+  textconv = exif
+  cachetextconv = true
+[rerere]
+  enabled = true
+[github]
+  user = yakloinsteak
+[push]
+  default = current

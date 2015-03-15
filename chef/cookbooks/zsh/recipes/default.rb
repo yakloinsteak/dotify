@@ -39,6 +39,16 @@ node['oh_my_zsh']['users'].each do |user_hash|
     })
   end
 
+  template "#{home_directory}/.zsh/paths.zsh" do
+    source "paths.erb"
+    owner user_hash[:login]
+    mode "644"
+    action :create_if_missing
+    variables({
+      :homedir => node['homedir']
+    })
+  end
+
   remote_directory "#{home_directory}/.zsh" do
     source 'zsh'
     files_owner user_hash[:login]

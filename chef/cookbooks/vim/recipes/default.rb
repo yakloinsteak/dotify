@@ -1,3 +1,5 @@
+SYNC = false
+
 include_recipe "git"
 
 apt_package 'vim'
@@ -65,6 +67,10 @@ vim_modules.each do |name,repo|
     group node['group']
     reference "master"
     action :sync
+
+    unless SYNC
+      not_if { File.exists? "#{node['homedir']}/.vim/bundle/#{name}" }
+    end
   end
 end
 
@@ -80,14 +86,32 @@ execute "Compile YouCompleteMe" do
   not_if { File.exists? "#{node['homedir']}/.vim/bundle/you-complete-me/third_party/ycmd" }
 end
 
-#TODO:completion with eclim
-directory "#{node['homedir']}/tools"
-execute 'Get eclipse for eclim/vim usage' do
-   command 'cd /usr/local/src && wget \'http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/luna/SR1a/eclipse-java-luna-SR1a-linux-gtk-x86_64.tar.gz&mirror_id=337\''
-   not_if  { File.exists? '/usr/local/src/eclipse-java-luna-SR1a-linux-gtk-x86_64.tar.gz' }
+#########################
+# Completion with eclim #
+#########################
+
+directory "#{node['homedir']}/tools" do
+  user node['username']
+  group node['group']
 end
-#tar -zxvf eclipse-java-luna-SR1a-linux-gtk-x86_64.tar.gz
-#wget http://downloads.sourceforge.net/project/eclim/eclim/2.4.1/eclim_2.4.1.jar?r=http%3A%2F%2Feclim.org%2Finstall.html&ts=1422211131&use_mirror=tcpdiag
-#java -jar eclim_2.4.1.jar
+
+execute 'Get eclipse for eclim/vim usage' do
+   command 'cd /usr/local/src && wget http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/luna/SR2/eclipse-java-luna-SR2-linux-gtk-x86_64.tar.gz'
+   not_if  { File.exists? '/usr/local/src/eclipse-java-luna-SR2-linux-gtk-x86_64.tar.gz' }
+end
+
+execute "Install eclipse" do
+  command 'cd /usr/local && tar -zxvf src/eclipse-java-luna-SR2-linux-gtk-x86_64.tar.gz'
+  not_if { File.exists? '/usr/local/eclipse/eclipse' }
+end
+
+execute "Get eclim" do
+  command "cd #{node['homedir']}/tools && wget http://downloads.sourceforge.net/project/eclim/eclim/2.4.1/eclim_2.4.1.jar?r=http%3A%2F%2Feclim.org%2Finstall.html&ts=1422211131&use_mirror=tcpdiag"
+  not_if { File.exists? "cd #{node['homedir']}/tools/eclim_2.4.1.jar" }
+end
+
+file "#{node['homedir']}/tools/README" do
+  content "run\njava -jar eclim_2.4.1.jar\nto set up eclim. Set up eclipse first."
+end
 
 # TODO: Leverage server if available and env var set

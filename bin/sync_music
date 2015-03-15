@@ -10,7 +10,7 @@ class OptparseExample
     options = OpenStruct.new
     username = `whoami`.chomp
     options.phone_path = "/media/#{username}/NO LABEL"
-    options.playlist_name = 'ipod.m3u'
+    options.playlist_name = 'cosmos.m3u'
     options.playlist_src  = lambda { "/home/blackman/.mpd/playlists/#{options.playlist_name}" }
     options.playlist_dest = lambda { "#{options.phone_path}/Playlists/#{options.playlist_name}" }
     options.ipod = false
@@ -44,9 +44,6 @@ class OptparseExample
       opts.on("-v", "--[no-]verbose", "verbose output") do |verbose|
         options.verbose = verbose
       end
-
-      opts.separator ""
-      opts.separator "Common options:"
 
       # No argument, shows at tail.  This will print an options summary.
       opts.on_tail("-h", "--help", "Show this message") do

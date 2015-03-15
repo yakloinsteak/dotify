@@ -2,18 +2,17 @@
 # ubuntu-restricted-extras
 
 always = %w(
-  python-magic
   apt-file autoconf automake bison build-essential build-essential ccache cmake coffeescript curl
-  duply exif exiv2 gdal-bin git git-core icedtea-7-plugin imagemagick iotop irssi
-  keychain libappindicator1 libboost-all-dev libc6-dev libcurl4-openssl-dev libevent-dev libffi-dev
+  duply exif exiv2 gdal-bin git git-core icedtea-7-plugin imagemagick iotop irssi keychain
+  libappindicator1 libboost-all-dev libc6-dev libcurl4-openssl-dev libevent-dev libffi-dev
   libgdbm-dev libgsasl7-dev liblapack-dev libpq-dev libproj-dev libqt4-core libqt4-gui libqtwebkit4
   libreadline6 libreadline6-dev  libsasl2-dev libsqlite3-0 libsqlite3-dev libssl-dev libtool
   libv8-dev libxml2-dev libxml2-dev libxslt-dev libxslt1-dev libyaml-dev lsb-core mercurial monit
   mysql-client mytop netpbm network-manager-openvpn nodejs nodejs-dev openjdk-7-jre openssh-server
   openssl openvpn pandoc pdftk perceptualdiff postgresql-client ptop pwgen python python-boto
-  python-pip python-pygments python3 qrencode qt4-dev-tools r-base ranger rsync ruby-qt4-webkit ruby
-  s3cmd screen sqlite3 sshfs tig tint2 traceroute tsung vim vlock whois wireshark
-  zlib1g zlib1g-dev zsh
+  python-magic python-pip python-pygments python3 qrencode qt4-dev-tools r-base ranger rsync
+  ruby-qt4-webkit ruby s3cmd screen sqlite3 sshfs tig tint2 traceroute tsung vim vlock whois
+  wireshark zlib1g zlib1g-dev zsh
 )
 
 gui_packages = %w(
