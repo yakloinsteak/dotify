@@ -1,5 +1,5 @@
 dotfiles = %w(
-  gitconfig gitignore gitmessasge
+  gitconfig gitignore gitmessage
 )
 
 dotfiles.each do |dotfile|

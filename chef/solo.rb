@@ -19,7 +19,8 @@ path = File.realpath(File.dirname(__FILE__))
 chef_secrets = YAML.load_file(File.join(path, 'chef_secrets.yml'))
 
 chef_secrets['run_list'] = [
-  "role[#{role}]"
+  "role[#{role}]",
+  'awesome'
 ]
 
 File.write("#{path}/node.json", chef_secrets.to_json)

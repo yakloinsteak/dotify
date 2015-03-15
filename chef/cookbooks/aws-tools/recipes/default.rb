@@ -9,5 +9,5 @@ end
 
 execute 'unzip aws tools. Rest is in zsh recipe' do
   command "cd /usr/local/src && unzip ec2-api-tools.zip -d /usr/local/ec2"
-  not_if { system('which ec2-describe-regions') }
+  not_if { system('find /usr/local/ec2 -name "ec2-describe-regions"') }
 end

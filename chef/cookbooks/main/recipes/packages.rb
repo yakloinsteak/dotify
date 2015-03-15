@@ -16,11 +16,11 @@ always = %w(
 )
 
 gui_packages = %w(
-  autocutsel awesome awesome-extra chromium-browser firefox fvwm gimp gitg gksu gparted gthumb
-  gtk-recordmydesktop gufw inkscape kcharselect libreoffice network-manager-openvpn-gnome openbox
-  paprefs parcellite pgadmin3 pidgin printer-driver-gutenprint quicksynergy scrot synergy terminator
-  thunar virtualbox virtualbox-guest-additions-iso vlc x11-xserver-utils xclip xdotool
-  xfce4-power-manager xscreensaver xscreensaver-gl xsel
+  autocutsel chromium-browser firefox fvwm gimp gitg gksu gparted gthumb gtk-recordmydesktop gufw
+  inkscape kcharselect libreoffice network-manager-openvpn-gnome openbox paprefs parcellite pgadmin3
+  pidgin printer-driver-gutenprint quicksynergy scrot synergy terminator thunar virtualbox
+  virtualbox-guest-additions-iso vlc x11-xserver-utils xclip xdotool xfce4-power-manager
+  xscreensaver xscreensaver-gl xsel
 )
 
 mapping = %w( osm2pgsql osmosis postgis)

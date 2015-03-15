@@ -1,6 +1,6 @@
-name "workstation"
+name "headless_workstation"
 
-description "Workstation"
+description "Headless Workstation"
 
 run_list(
   "main::packages",
@@ -16,16 +16,15 @@ run_list(
   "redis2",
   "mpd",
   'ack',
-  "wemux",
-  'awesome'
+  "wemux"
 )
 
 default_attributes({
-  'gui_packages' => true,
+  'gui_packages' => false,
   'homedir'   => '/home/blackman',
   'group'     => 'blackman',
   'username'  => 'blackman',
-  'full_name' =>  'Todd Blackman',
+  'full_name' => 'Todd Blackman',
   'rvm' => {
     'user_installs' => [
       {

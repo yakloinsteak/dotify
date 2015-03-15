@@ -1,0 +1,16 @@
+Host example1
+  HostName 127.0.0.1
+  User vagrant
+  Port 2226
+  UserKnownHostsFile /dev/null
+  StrictHostKeyChecking no
+  PasswordAuthentication no
+  IdentityFile "/home/blackman/.vagrant.d/insecure_private_key"
+  IdentitiesOnly yes
+
+Host example2
+  User blackman
+  HostName 192.168.1.2
+  LocalForward 0.0.0.0:3001 127.0.0.1:3000
+  LocalForward 0.0.0.0:4001 127.0.0.1:4000
+  LocalForward 0.0.0.0:5001 127.0.0.1:5000
